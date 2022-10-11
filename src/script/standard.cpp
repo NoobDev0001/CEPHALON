@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -36,11 +36,11 @@ const char* GetTxnOutputType(txnouttype t)
     case TX_WITNESS_V0_KEYHASH: return "witness_v0_keyhash";
     case TX_WITNESS_V0_SCRIPTHASH: return "witness_v0_scripthash";
 
-    /** NEOXA START */
+    /** CEPHALON START */
     case TX_NEW_ASSET: return ASSET_NEW_STRING;
     case TX_TRANSFER_ASSET: return ASSET_TRANSFER_STRING;
     case TX_REISSUE_ASSET: return ASSET_REISSUE_STRING;
-    /** NEOXA END */
+    /** CEPHALON END */
     }
     return nullptr;
 }
@@ -54,7 +54,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::v
         // Standard tx, sender provides pubkey, receiver adds signature
         mTemplates.insert(std::make_pair(TX_PUBKEY, CScript() << OP_PUBKEY << OP_CHECKSIG));
 
-        // Neoxa address tx, sender provides hash of pubkey, receiver provides signature and pubkey
+        // Cephalon address tx, sender provides hash of pubkey, receiver provides signature and pubkey
         mTemplates.insert(std::make_pair(TX_PUBKEYHASH, CScript() << OP_DUP << OP_HASH160 << OP_PUBKEYHASH << OP_EQUALVERIFY << OP_CHECKSIG));
 
         // Sender provides N pubkeys, receivers provides M signatures
@@ -72,7 +72,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::v
         vSolutionsRet.push_back(hashBytes);
         return true;
     }
-    /** NEOXA START */
+    /** CEPHALON START */
     int nType = 0;
     bool fIsOwner = false;
     if (scriptPubKey.IsAssetScript(nType, fIsOwner)) {
@@ -81,7 +81,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::v
         vSolutionsRet.push_back(hashBytes);
         return true;
     }
-    /** NEOXA END */
+    /** CEPHALON END */
 
     int witnessversion;
     std::vector<unsigned char> witnessprogram;
@@ -234,7 +234,7 @@ bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet)
     {
         addressRet = CScriptID(uint160(vSolutions[0]));
         return true;
-    /** NEOXA START */
+    /** CEPHALON START */
     } else if (whichType == TX_NEW_ASSET || whichType == TX_REISSUE_ASSET || whichType == TX_TRANSFER_ASSET) {
         addressRet = CKeyID(uint160(vSolutions[0]));
         return true;
@@ -244,7 +244,7 @@ bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet)
             return true;
         }
     }
-     /** NEOXA END */
+     /** CEPHALON END */
     // Multisig txns have more than one address...
     return false;
 }

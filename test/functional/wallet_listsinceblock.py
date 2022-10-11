@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Cephalon Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """Test the listsincelast RPC."""
 
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import CephalonTestFramework
 from test_framework.util import assert_equal
 
-class ListSinceBlockTest (NeoxaTestFramework):
+class ListSinceBlockTest (CephalonTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
         self.setup_clean_chain = True

@@ -1,16 +1,16 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_UTILITYDIALOG_H
-#define NEOXA_QT_UTILITYDIALOG_H
+#ifndef CEPHALON_QT_UTILITYDIALOG_H
+#define CEPHALON_QT_UTILITYDIALOG_H
 
 #include <QDialog>
 #include <QObject>
 
-class NeoxaGUI;
+class CephalonGUI;
 
 namespace Ui {
     class HelpMessageDialog;
@@ -44,11 +44,11 @@ class ShutdownWindow : public QWidget
 
 public:
     explicit ShutdownWindow(QWidget *parent=0, Qt::WindowFlags f=0);
-    static QWidget *showShutdownWindow(NeoxaGUI *window);
+    static QWidget *showShutdownWindow(CephalonGUI *window);
 
 protected:
     void closeEvent(QCloseEvent *event);
 };
 
 
-#endif // NEOXA_QT_UTILITYDIALOG_H
+#endif // CEPHALON_QT_UTILITYDIALOG_H

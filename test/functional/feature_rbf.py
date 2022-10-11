@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Cephalon Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """Test the RBF code."""
 
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import CephalonTestFramework
 from test_framework.util import satoshi_round, assert_raises_rpc_error, assert_equal, Decimal
 from test_framework.script import CScript
 from test_framework.mininode import COIN, CTransaction, CTxIn, COutPoint, CTxOut
@@ -65,7 +65,7 @@ def make_utxo(node, amount, confirmed=True, script_pub_key=CScript([1])):
     return COutPoint(int(txid, 16), 0)
 
 
-class ReplaceByFeeTest(NeoxaTestFramework):
+class ReplaceByFeeTest(CephalonTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 2

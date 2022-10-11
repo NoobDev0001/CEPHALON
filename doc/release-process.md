@@ -3,9 +3,9 @@ Release Process
 
 Before every release candidate:
 
-* Update translations (ping wumpus on IRC) see [translation_process.md](https://github.com/NeoxaChain/Neoxa/blob/master/doc/translation_process.md#synchronising-translations).
+* Update translations (ping wumpus on IRC) see [translation_process.md](https://github.com/CephalonChain/Cephalon/blob/master/doc/translation_process.md#synchronising-translations).
 
-* Update manpages, see [gen-manpages.sh](https://github.com/NeoxaChain/Neoxa/blob/master/contrib/devtools/README.md#gen-manpagessh).
+* Update manpages, see [gen-manpages.sh](https://github.com/CephalonChain/Cephalon/blob/master/contrib/devtools/README.md#gen-manpagessh).
 
 Before every minor and major release:
 
@@ -21,7 +21,7 @@ Before every minor and major release:
 
 Before every major release:
 
-* Update hardcoded [seeds](/contrib/seeds/README.md), see [this pull request](https://github.com/NeoxaChain/Neoxa/pull/7415) for an example.
+* Update hardcoded [seeds](/contrib/seeds/README.md), see [this pull request](https://github.com/CephalonChain/Cephalon/pull/7415) for an example.
 * Update [`BLOCK_CHAIN_SIZE`](/src/qt/intro.cpp) to the current size plus some overhead.
 * Update `src/chainparams.cpp` chainTxData with statistics about the transaction count and rate.
 * Update version of `contrib/gitian-descriptors/*.yml`: usually one'd want to do this on master after branching off the release - but be sure to at least do it before a new major release
@@ -33,12 +33,12 @@ If you're using the automated script (found in [contrib/gitian-build.sh](/contri
 Check out the source code in the following directory hierarchy.
 
     cd /path/to/your/toplevel/build
-    git clone https://github.com/neoxa-core/gitian.sigs.git
-    git clone https://github.com/neoxa-core/neoxa-detached-sigs.git
+    git clone https://github.com/cephalon-core/gitian.sigs.git
+    git clone https://github.com/cephalon-core/cephalon-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
-    git clone https://github.com/NeoxaChain/Neoxa.git
+    git clone https://github.com/CephalonChain/Cephalon.git
 
-### Neoxa maintainers/release engineers, suggestion for writing release notes
+### Cephalon maintainers/release engineers, suggestion for writing release notes
 
 Write release notes. git shortlog helps a lot, for example:
 
@@ -61,7 +61,7 @@ If you're using the automated script (found in [contrib/gitian-build.sh](/contri
 
 Setup Gitian descriptors:
 
-    pushd ./neoxa
+    pushd ./cephalon
     export SIGNER=(your Gitian key, ie bluematt, sipa, etc)
     export VERSION=(new version, e.g. 0.8.0)
     git fetch
@@ -84,7 +84,7 @@ Ensure gitian-builder is up-to-date:
 
     pushd ./gitian-builder
     mkdir -p inputs
-    wget -P inputs https://neoxa.net/cfields/osslsigncode-Backports-to-1.7.1.patch
+    wget -P inputs https://cephalon.net/cfields/osslsigncode-Backports-to-1.7.1.patch
     wget -P inputs http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
     popd
 
@@ -95,7 +95,7 @@ Create the OS X SDK tarball, see the [OS X readme](README_osx.md) for details, a
 By default, Gitian will fetch source files as needed. To cache them ahead of time:
 
     pushd ./gitian-builder
-    make -C ../neoxa/depends download SOURCES_PATH=`pwd`/cache/common
+    make -C ../cephalon/depends download SOURCES_PATH=`pwd`/cache/common
     popd
 
 Only missing files will be fetched, so this is safe to re-run for each build.
@@ -103,50 +103,50 @@ Only missing files will be fetched, so this is safe to re-run for each build.
 NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from local URLs. For example:
 
     pushd ./gitian-builder
-    ./bin/gbuild --url neoxa=/path/to/neoxa,signature=/path/to/sigs {rest of arguments}
+    ./bin/gbuild --url cephalon=/path/to/cephalon,signature=/path/to/sigs {rest of arguments}
     popd
 
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign Neoxa Core for Linux, Windows, and OS X:
+### Build and sign Cephalon Core for Linux, Windows, and OS X:
 
     pushd ./gitian-builder
-    ./bin/gbuild --num-make 2 --memory 3000 --commit neoxa=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-linux.yml
-    mv build/out/neoxa-*.tar.gz build/out/src/neoxa-*.tar.gz ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit cephalon=v${VERSION} ../cephalon/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../cephalon/contrib/gitian-descriptors/gitian-linux.yml
+    mv build/out/cephalon-*.tar.gz build/out/src/cephalon-*.tar.gz ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit neoxa=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-win.yml
-    mv build/out/neoxa-*-win-unsigned.tar.gz inputs/neoxa-win-unsigned.tar.gz
-    mv build/out/neoxa-*.zip build/out/neoxa-*.exe ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit cephalon=v${VERSION} ../cephalon/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../cephalon/contrib/gitian-descriptors/gitian-win.yml
+    mv build/out/cephalon-*-win-unsigned.tar.gz inputs/cephalon-win-unsigned.tar.gz
+    mv build/out/cephalon-*.zip build/out/cephalon-*.exe ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit neoxa=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-osx.yml
-    mv build/out/neoxa-*-osx-unsigned.tar.gz inputs/neoxa-osx-unsigned.tar.gz
-    mv build/out/neoxa-*.tar.gz build/out/neoxa-*.dmg ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit cephalon=v${VERSION} ../cephalon/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../cephalon/contrib/gitian-descriptors/gitian-osx.yml
+    mv build/out/cephalon-*-osx-unsigned.tar.gz inputs/cephalon-osx-unsigned.tar.gz
+    mv build/out/cephalon-*.tar.gz build/out/cephalon-*.dmg ../
     popd
 
 Build output expected:
 
-  1. source tarball (`neoxa-${VERSION}.tar.gz`)
-  2. linux 32-bit and 64-bit dist tarballs (`neoxa-${VERSION}-linux[32|64].tar.gz`)
-  3. windows 32-bit and 64-bit unsigned installers and dist zips (`neoxa-${VERSION}-win[32|64]-setup-unsigned.exe`, `neoxa-${VERSION}-win[32|64].zip`)
-  4. OS X unsigned installer and dist tarball (`neoxa-${VERSION}-osx-unsigned.dmg`, `neoxa-${VERSION}-osx64.tar.gz`)
+  1. source tarball (`cephalon-${VERSION}.tar.gz`)
+  2. linux 32-bit and 64-bit dist tarballs (`cephalon-${VERSION}-linux[32|64].tar.gz`)
+  3. windows 32-bit and 64-bit unsigned installers and dist zips (`cephalon-${VERSION}-win[32|64]-setup-unsigned.exe`, `cephalon-${VERSION}-win[32|64].zip`)
+  4. OS X unsigned installer and dist tarball (`cephalon-${VERSION}-osx-unsigned.dmg`, `cephalon-${VERSION}-osx64.tar.gz`)
   5. Gitian signatures (in `gitian.sigs/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
 Add other gitian builders keys to your gpg keyring, and/or refresh keys.
 
-    gpg --import neoxa/contrib/gitian-keys/*.pgp
+    gpg --import cephalon/contrib/gitian-keys/*.pgp
     gpg --refresh-keys
 
 Verify the signatures
 
     pushd ./gitian-builder
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../neoxa/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../neoxa/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../neoxa/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../cephalon/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../cephalon/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../cephalon/contrib/gitian-descriptors/gitian-osx.yml
     popd
 
 ### Next steps:
@@ -167,22 +167,22 @@ Codesigner only: Create Windows/OS X detached signatures:
 
 Codesigner only: Sign the osx binary:
 
-    transfer neoxa-osx-unsigned.tar.gz to osx for signing
-    tar xf neoxa-osx-unsigned.tar.gz
+    transfer cephalon-osx-unsigned.tar.gz to osx for signing
+    tar xf cephalon-osx-unsigned.tar.gz
     ./detached-sig-create.sh -s "Key ID"
     Enter the keychain password and authorize the signature
     Move signature-osx.tar.gz back to the gitian host
 
 Codesigner only: Sign the windows binaries:
 
-    tar xf neoxa-win-unsigned.tar.gz
+    tar xf cephalon-win-unsigned.tar.gz
     ./detached-sig-create.sh -key /path/to/codesign.key
     Enter the passphrase for the key when prompted
     signature-win.tar.gz will be created
 
 Codesigner only: Commit the detached codesign payloads:
 
-    cd ~/neoxa-detached-sigs
+    cd ~/cephalon-detached-sigs
     checkout the appropriate branch for this release series
     rm -rf *
     tar xf signature-osx.tar.gz
@@ -195,25 +195,25 @@ Codesigner only: Commit the detached codesign payloads:
 Non-codesigners: wait for Windows/OS X detached signatures:
 
 - Once the Windows/OS X builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [neoxa-detached-sigs](https://github.com/neoxa-core/neoxa-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [cephalon-detached-sigs](https://github.com/cephalon-core/cephalon-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the signed OS X binary:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../neoxa/contrib/gitian-descriptors/gitian-osx-signer.yml
-    mv build/out/neoxa-osx-signed.dmg ../neoxa-${VERSION}-osx.dmg
+    ./bin/gbuild -i --commit signature=v${VERSION} ../cephalon/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../cephalon/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../cephalon/contrib/gitian-descriptors/gitian-osx-signer.yml
+    mv build/out/cephalon-osx-signed.dmg ../cephalon-${VERSION}-osx.dmg
     popd
 
 Create (and optionally verify) the signed Windows binaries:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../neoxa/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../neoxa/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../neoxa/contrib/gitian-descriptors/gitian-win-signer.yml
-    mv build/out/neoxa-*win64-setup.exe ../neoxa-${VERSION}-win64-setup.exe
-    mv build/out/neoxa-*win32-setup.exe ../neoxa-${VERSION}-win32-setup.exe
+    ./bin/gbuild -i --commit signature=v${VERSION} ../cephalon/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../cephalon/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../cephalon/contrib/gitian-descriptors/gitian-win-signer.yml
+    mv build/out/cephalon-*win64-setup.exe ../cephalon-${VERSION}-win64-setup.exe
+    mv build/out/cephalon-*win32-setup.exe ../cephalon-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed OS X/Windows binaries:
@@ -235,23 +235,23 @@ sha256sum * > SHA256SUMS
 
 The list of files should be:
 ```
-neoxa-${VERSION}-aarch64-linux-gnu.tar.gz
-neoxa-${VERSION}-arm-linux-gnueabihf.tar.gz
-neoxa-${VERSION}-i686-pc-linux-gnu.tar.gz
-neoxa-${VERSION}-x86_64-linux-gnu.tar.gz
-neoxa-${VERSION}-osx64.tar.gz
-neoxa-${VERSION}-osx.dmg
-neoxa-${VERSION}.tar.gz
-neoxa-${VERSION}-win32-setup.exe
-neoxa-${VERSION}-win32.zip
-neoxa-${VERSION}-win64-setup.exe
-neoxa-${VERSION}-win64.zip
+cephalon-${VERSION}-aarch64-linux-gnu.tar.gz
+cephalon-${VERSION}-arm-linux-gnueabihf.tar.gz
+cephalon-${VERSION}-i686-pc-linux-gnu.tar.gz
+cephalon-${VERSION}-x86_64-linux-gnu.tar.gz
+cephalon-${VERSION}-osx64.tar.gz
+cephalon-${VERSION}-osx.dmg
+cephalon-${VERSION}.tar.gz
+cephalon-${VERSION}-win32-setup.exe
+cephalon-${VERSION}-win32.zip
+cephalon-${VERSION}-win64-setup.exe
+cephalon-${VERSION}-win64.zip
 ```
 The `*-debug*` files generated by the gitian build contain debug symbols
 for troubleshooting by developers. It is assumed that anyone that is interested
 in debugging can run gitian to generate the files for themselves. To avoid
 end-user confusion about which file to pick, as well as save storage
-space *do not upload these to the neoxacoin.net server, nor put them in the torrent*.
+space *do not upload these to the cephaloncoin.net server, nor put them in the torrent*.
 
 - GPG-sign it, delete the unsigned file:
 ```
@@ -261,47 +261,47 @@ rm SHA256SUMS
 (the digest algorithm is forced to sha256 to avoid confusion of the `Hash:` header that GPG adds with the SHA256 used for the files)
 Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spurious/nonsensical entry.
 
-- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the neoxacoin.net server
-  into `/var/www/bin/neoxa-core-${VERSION}`
+- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the cephaloncoin.net server
+  into `/var/www/bin/cephalon-core-${VERSION}`
 
 - A `.torrent` will appear in the directory after a few minutes. Optionally help seed this torrent. To get the `magnet:` URI use:
 ```bash
 transmission-show -m <torrent file>
 ```
 Insert the magnet URI into the announcement sent to mailing lists. This permits
-people without access to `neoxacoin.net` to download the binary distribution.
+people without access to `cephaloncoin.net` to download the binary distribution.
 Also put it into the `optional_magnetlink:` slot in the YAML file for
-neoxacoin.net (see below for neoxacoin.net update instructions).
+cephaloncoin.net (see below for cephaloncoin.net update instructions).
 
-- Update neoxacoin.net version
+- Update cephaloncoin.net version
 
-  - First, check to see if the Neoxa.org maintainers have prepared a
-    release: https://github.com/neoxa-dot-org/neoxacoin.net/labels/Releases
+  - First, check to see if the Cephalon.org maintainers have prepared a
+    release: https://github.com/cephalon-dot-org/cephaloncoin.net/labels/Releases
 
       - If they have, it will have previously failed their Travis CI
         checks because the final release files weren't uploaded.
         Trigger a Travis CI rebuild---if it passes, merge.
 
-  - If they have not prepared a release, follow the Neoxa.org release
-    instructions: https://github.com/neoxa-dot-org/neoxacoin.net#release-notes
+  - If they have not prepared a release, follow the Cephalon.org release
+    instructions: https://github.com/cephalon-dot-org/cephaloncoin.net#release-notes
 
   - After the pull request is merged, the website will automatically show the newest version within 15 minutes, as well
     as update the OS download links. Ping @saivann/@harding (saivann/harding on Freenode) in case anything goes wrong
 
 - Announce the release:
 
-  - neoxa-dev and neoxa-core-dev mailing list
+  - cephalon-dev and cephalon-core-dev mailing list
 
-  - Neoxa Core announcements list https://neoxa.net/en/list/announcements/join/
+  - Cephalon Core announcements list https://cephalon.net/en/list/announcements/join/
 
-  - Update title of #neoxa on Freenode IRC
+  - Update title of #cephalon on Freenode IRC
 
-  - Optionally twitter, reddit /r/Neoxa, ... but this will usually sort out itself
+  - Optionally twitter, reddit /r/Cephalon, ... but this will usually sort out itself
 
-  - Notify BlueMatt so that he can start building [the PPAs](https://launchpad.net/~neoxa/+archive/ubuntu/neoxa)
+  - Notify BlueMatt so that he can start building [the PPAs](https://launchpad.net/~cephalon/+archive/ubuntu/cephalon)
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/NeoxaChain/Neoxa/releases/new) with a link to the arcNEOXAD release notes.
+  - Create a [new GitHub release](https://github.com/CephalonChain/Cephalon/releases/new) with a link to the arcCEPHALOND release notes.
 
   - Celebrate

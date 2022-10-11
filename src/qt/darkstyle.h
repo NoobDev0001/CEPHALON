@@ -11,8 +11,8 @@
 ###############################################################################
 */
 
-#ifndef NEOXA_DARKSTYLE_H
-#define NEOXA_DARKSTYLE_H
+#ifndef CEPHALON_DARKSTYLE_H
+#define CEPHALON_DARKSTYLE_H
 
 #include <QApplication>
 #include <QProxyStyle>
@@ -37,4 +37,4 @@ private:
     QStyle *styleBase(QStyle *style = Q_NULLPTR) const;
 };
 
-#endif //NEOXA_DARKSTYLE_H
+#endif //CEPHALON_DARKSTYLE_H

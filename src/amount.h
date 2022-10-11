@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_AMOUNT_H
-#define NEOXA_AMOUNT_H
+#ifndef CEPHALON_AMOUNT_H
+#define CEPHALON_AMOUNT_H
 
 #include <stdint.h>
 
@@ -18,7 +18,7 @@ static const CAmount CENT = 1000000;
 
 /** No amount larger than this (in satoshi) is valid.
  *
- * Note that this constant is *not* the total money supply, which in Neoxa
+ * Note that this constant is *not* the total money supply, which in Cephalon
  * currently happens to be less than 21,000,000,000 NEOX for various reasons, but
  * rather a sanity check. As this sanity check is used by consensus-critical
  * validation code, the exact value of the MAX_MONEY constant is consensus
@@ -28,4 +28,4 @@ static const CAmount CENT = 1000000;
 static const CAmount MAX_MONEY = 21000000000 * COIN;
 inline bool MoneyRange(const CAmount& nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 
-#endif //  NEOXA_AMOUNT_H
+#endif //  CEPHALON_AMOUNT_H

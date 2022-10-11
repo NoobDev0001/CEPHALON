@@ -19,28 +19,28 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-NEOXA_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+CEPHALON_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-NEOXA_INCLUDES += -I$(srcdir)/secp256k1/include
-NEOXA_INCLUDES += $(UNIVALUE_CFLAGS)
+CEPHALON_INCLUDES += -I$(srcdir)/secp256k1/include
+CEPHALON_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBNEOXA_SERVER=libneoxa_server.a
-LIBNEOXA_COMMON=libneoxa_common.a
-LIBNEOXA_CONSENSUS=libneoxa_consensus.a
-LIBneoxa_cli=libneoxa_cli.a
-LIBNEOXA_UTIL=libneoxa_util.a
-LIBNEOXA_CRYPTO=crypto/libneoxa_crypto.a
-LIBNEOXAQT=qt/libneoxaqt.a
+LIBCEPHALON_SERVER=libcephalon_server.a
+LIBCEPHALON_COMMON=libcephalon_common.a
+LIBCEPHALON_CONSENSUS=libcephalon_consensus.a
+LIBcephalon_cli=libcephalon_cli.a
+LIBCEPHALON_UTIL=libcephalon_util.a
+LIBCEPHALON_CRYPTO=crypto/libcephalon_crypto.a
+LIBCEPHALONQT=qt/libcephalonqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBNEOXA_ZMQ=libneoxa_zmq.a
+LIBCEPHALON_ZMQ=libcephalon_zmq.a
 endif
-if BUILD_NEOXA_LIBS
-LIBNEOXACONSENSUS=libneoxaconsensus.la
+if BUILD_CEPHALON_LIBS
+LIBCEPHALONCONSENSUS=libcephalonconsensus.la
 endif
 if ENABLE_WALLET
-LIBNEOXA_WALLET=libneoxa_wallet.a
+LIBCEPHALON_WALLET=libcephalon_wallet.a
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
@@ -49,37 +49,37 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  $(LIBNEOXA_CRYPTO) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_COMMON) \
-  $(LIBNEOXA_CONSENSUS) \
-  $(LIBNEOXA_SERVER) \
-  $(LIBneoxa_cli) \
-  $(LIBNEOXA_WALLET) \
-  $(LIBNEOXA_ZMQ)
+  $(LIBCEPHALON_CRYPTO) \
+  $(LIBCEPHALON_UTIL) \
+  $(LIBCEPHALON_COMMON) \
+  $(LIBCEPHALON_CONSENSUS) \
+  $(LIBCEPHALON_SERVER) \
+  $(LIBcephalon_cli) \
+  $(LIBCEPHALON_WALLET) \
+  $(LIBCEPHALON_ZMQ)
 
-lib_LTLIBRARIES = $(LIBNEOXACONSENSUS)
+lib_LTLIBRARIES = $(LIBCEPHALONCONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
-if BUILD_NEOXAD
-  bin_PROGRAMS += neoxad
+if BUILD_CEPHALOND
+  bin_PROGRAMS += cephalond
 endif
 
-if BUILD_NEOXA_CLI
-  bin_PROGRAMS += neoxa-cli
+if BUILD_CEPHALON_CLI
+  bin_PROGRAMS += cephalon-cli
 endif
 
-if BUILD_NEOXA_TX
-  bin_PROGRAMS += neoxa-tx
+if BUILD_CEPHALON_TX
+  bin_PROGRAMS += cephalon-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# neoxa core #
-NEOXA_CORE_H = \
+# cephalon core #
+CEPHALON_CORE_H = \
   addrdb.h \
   addressindex.h \
   algo/sph_groestl.h \
@@ -240,12 +240,12 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libneoxa_util_a-clientversion.$(OBJEXT): obj/build.h
+libcephalon_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between neoxad and neoxa-qt
-libneoxa_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libneoxa_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_server_a_SOURCES = \
+# server: shared between cephalond and cephalon-qt
+libcephalon_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libcephalon_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libcephalon_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
   bloom.cpp \
@@ -297,23 +297,23 @@ libneoxa_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
-  $(NEOXA_CORE_H)
+  $(CEPHALON_CORE_H)
 
 if ENABLE_ZMQ
-libneoxa_zmq_a_CPPFLAGS = $(NEOXA_INCLUDES) $(ZMQ_CFLAGS)
-libneoxa_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_zmq_a_SOURCES = \
+libcephalon_zmq_a_CPPFLAGS = $(CEPHALON_INCLUDES) $(ZMQ_CFLAGS)
+libcephalon_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libcephalon_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp
 endif
 
 
-# wallet: shared between neoxad and neoxa-qt, but only linked
+# wallet: shared between cephalond and cephalon-qt, but only linked
 # when wallet enabled
-libneoxa_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_wallet_a_SOURCES = \
+libcephalon_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES)
+libcephalon_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libcephalon_wallet_a_SOURCES = \
   wallet/crypter.cpp \
   wallet/db.cpp \
   wallet/feebumper.cpp \
@@ -324,12 +324,12 @@ libneoxa_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   wallet/bip39.cpp \
-  $(NEOXA_CORE_H)
+  $(CEPHALON_CORE_H)
 
 # crypto primitives library
-crypto_libneoxa_crypto_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libneoxa_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libneoxa_crypto_a_SOURCES = \
+crypto_libcephalon_crypto_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libcephalon_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libcephalon_crypto_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha20.h \
@@ -372,13 +372,13 @@ crypto_libneoxa_crypto_a_SOURCES = \
   crypto/ethash/progpow_test_vectors.hpp
 
 if USE_ASM
-crypto_libneoxa_crypto_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libcephalon_crypto_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
 # consensus: shared between all executables that validate any consensus rules.
-libneoxa_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_consensus_a_SOURCES = \
+libcephalon_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES)
+libcephalon_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libcephalon_consensus_a_SOURCES = \
   amount.h \
   arith_uint256.cpp \
   arith_uint256.h \
@@ -395,7 +395,7 @@ libneoxa_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/neoxaconsensus.cpp \
+  script/cephalonconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
@@ -413,12 +413,12 @@ libneoxa_consensus_a_SOURCES = \
   version.h \
   LibBoolEE.cpp \
   LibBoolEE.h \
-  $(NEOXA_CORE_H)
+  $(CEPHALON_CORE_H)
 
-# common: shared between neoxad, and neoxa-qt and non-server tools
-libneoxa_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_common_a_SOURCES = \
+# common: shared between cephalond, and cephalon-qt and non-server tools
+libcephalon_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES)
+libcephalon_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libcephalon_common_a_SOURCES = \
   base58.cpp \
   chainparams.cpp \
   coins.cpp \
@@ -435,14 +435,14 @@ libneoxa_common_a_SOURCES = \
   script/sign.cpp \
   script/standard.cpp \
   warnings.cpp \
-  $(NEOXA_CORE_H)
+  $(CEPHALON_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libneoxa_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_util_a_SOURCES = \
+libcephalon_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES)
+libcephalon_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libcephalon_util_a_SOURCES = \
   support/lockedpool.cpp \
   chainparamsbase.cpp \
   clientversion.cpp \
@@ -458,102 +458,102 @@ libneoxa_util_a_SOURCES = \
   utilmoneystr.cpp \
   utilstrencodings.cpp \
   utiltime.cpp \
-  $(NEOXA_CORE_H)
+  $(CEPHALON_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libneoxa_util_a_SOURCES += compat/glibc_compat.cpp
+libcephalon_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between neoxa-cli and neoxa-qt
-libneoxa_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_cli_a_SOURCES = \
+# cli: shared between cephalon-cli and cephalon-qt
+libcephalon_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES)
+libcephalon_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libcephalon_cli_a_SOURCES = \
   rpc/client.cpp \
-  $(NEOXA_CORE_H)
+  $(CEPHALON_CORE_H)
 
-nodist_libneoxa_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libcephalon_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# neoxad binary #
-neoxad_SOURCES = neoxad.cpp
-neoxad_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-neoxad_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-neoxad_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# cephalond binary #
+cephalond_SOURCES = cephalond.cpp
+cephalond_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES)
+cephalond_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+cephalond_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-neoxad_SOURCES += neoxad-res.rc
+cephalond_SOURCES += cephalond-res.rc
 endif
 
-neoxad_LDADD = \
-  $(LIBNEOXA_SERVER) \
-  $(LIBNEOXA_COMMON) \
+cephalond_LDADD = \
+  $(LIBCEPHALON_SERVER) \
+  $(LIBCEPHALON_COMMON) \
   $(LIBUNIVALUE) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_WALLET) \
-  $(LIBNEOXA_ZMQ) \
-  $(LIBNEOXA_CONSENSUS) \
-  $(LIBNEOXA_CRYPTO) \
+  $(LIBCEPHALON_UTIL) \
+  $(LIBCEPHALON_WALLET) \
+  $(LIBCEPHALON_ZMQ) \
+  $(LIBCEPHALON_CONSENSUS) \
+  $(LIBCEPHALON_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-neoxad_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+cephalond_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# neoxa-cli binary #
-neoxa_cli_SOURCES = neoxa-cli.cpp
-neoxa_cli_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES) $(EVENT_CFLAGS)
-neoxa_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-neoxa_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# cephalon-cli binary #
+cephalon_cli_SOURCES = cephalon-cli.cpp
+cephalon_cli_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES) $(EVENT_CFLAGS)
+cephalon_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+cephalon_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-neoxa_cli_SOURCES += neoxa-cli-res.rc
+cephalon_cli_SOURCES += cephalon-cli-res.rc
 endif
 
-neoxa_cli_LDADD = \
-  $(LIBneoxa_cli) \
+cephalon_cli_LDADD = \
+  $(LIBcephalon_cli) \
   $(LIBUNIVALUE) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_CRYPTO)
+  $(LIBCEPHALON_UTIL) \
+  $(LIBCEPHALON_CRYPTO)
 
-neoxa_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+cephalon_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# neoxa-tx binary #
-neoxa_tx_SOURCES = neoxa-tx.cpp
-neoxa_tx_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-neoxa_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-neoxa_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# cephalon-tx binary #
+cephalon_tx_SOURCES = cephalon-tx.cpp
+cephalon_tx_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES)
+cephalon_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+cephalon_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-neoxa_tx_SOURCES += neoxa-tx-res.rc
+cephalon_tx_SOURCES += cephalon-tx-res.rc
 endif
 
-neoxa_tx_LDADD = \
+cephalon_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBNEOXA_COMMON) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_CONSENSUS) \
-  $(LIBNEOXA_CRYPTO) \
+  $(LIBCEPHALON_COMMON) \
+  $(LIBCEPHALON_UTIL) \
+  $(LIBCEPHALON_CONSENSUS) \
+  $(LIBCEPHALON_CRYPTO) \
   $(LIBSECP256K1)
 
-neoxa_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+cephalon_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# neoxaconsensus library #
-if BUILD_NEOXA_LIBS
-include_HEADERS = script/neoxaconsensus.h
-libneoxaconsensus_la_SOURCES = $(crypto_libneoxa_crypto_a_SOURCES) $(libneoxa_consensus_a_SOURCES)
+# cephalonconsensus library #
+if BUILD_CEPHALON_LIBS
+include_HEADERS = script/cephalonconsensus.h
+libcephalonconsensus_la_SOURCES = $(crypto_libcephalon_crypto_a_SOURCES) $(libcephalon_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libneoxaconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libcephalonconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libneoxaconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libneoxaconsensus_la_LIBADD = $(LIBSECP256K1) $(BOOST_LIBS)
-libneoxaconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_NEOXA_INTERNAL
-libneoxaconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libcephalonconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libcephalonconsensus_la_LIBADD = $(LIBSECP256K1) $(BOOST_LIBS)
+libcephalonconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_CEPHALON_INTERNAL
+libcephalonconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
@@ -583,12 +583,12 @@ CLEANFILES += obj/build.h
 EXTRA_DIST = $(CTAES_DIST)
 
 
-config/neoxa-config.h: config/stamp-h1
+config/cephalon-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/neoxa-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/cephalon-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/neoxa-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/neoxa-config.h.in
+$(top_srcdir)/$(subdir)/config/cephalon-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/cephalon-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean

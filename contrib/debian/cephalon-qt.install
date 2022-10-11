@@ -1,0 +1,6 @@
+usr/local/bin/cephalon-qt usr/bin
+share/pixmaps/cephalon32.xpm usr/share/pixmaps
+share/pixmaps/cephalon16.xpm usr/share/pixmaps
+share/pixmaps/cephalon128.png usr/share/pixmaps
+debian/cephalon-qt.desktop usr/share/applications
+debian/cephalon-qt.protocol usr/share/kde4/services/

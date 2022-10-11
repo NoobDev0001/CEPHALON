@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_ASSETSDIALOG_H
-#define NEOXA_QT_ASSETSDIALOG_H
+#ifndef CEPHALON_QT_ASSETSDIALOG_H
+#define CEPHALON_QT_ASSETSDIALOG_H
 
 #include "walletmodel.h"
 
@@ -27,7 +27,7 @@ QT_BEGIN_NAMESPACE
 class QUrl;
 QT_END_NAMESPACE
 
-/** Dialog for sending neoxa */
+/** Dialog for sending cephalon */
 class AssetsDialog : public QDialog
 {
     Q_OBJECT
@@ -109,14 +109,14 @@ private Q_SLOTS:
 
     void customFeeFeatureChanged(bool);
 
-    /** NEOXA START */
+    /** CEPHALON START */
     void assetControlUpdateSendCoinsDialog();
     void focusAsset(const QModelIndex& index);
-    /** NEOXA END */
+    /** CEPHALON END */
 
     Q_SIGNALS:
             // Fired when a message should be reported to the user
             void message(const QString &title, const QString &message, unsigned int style);
 };
 
-#endif // NEOXA_QT_ASSETSSDIALOG_H
+#endif // CEPHALON_QT_ASSETSSDIALOG_H

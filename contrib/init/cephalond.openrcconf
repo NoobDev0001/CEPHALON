@@ -1,0 +1,33 @@
+# /etc/conf.d/cephalond: config file for /etc/init.d/cephalond
+
+# Config file location
+#CEPHALOND_CONFIGFILE="/etc/cephalon/cephalon.conf"
+
+# What directory to write pidfile to?  (created and owned by $CEPHALOND_USER)
+#CEPHALOND_PIDDIR="/var/run/cephalond"
+
+# What filename to give the pidfile
+#CEPHALOND_PIDFILE="${CEPHALOND_PIDDIR}/cephalond.pid"
+
+# Where to write cephalond data (be mindful that the blockchain is large)
+#CEPHALOND_DATADIR="/var/lib/cephalond"
+
+# User and group to own cephalond process
+#CEPHALOND_USER="cephalon"
+#CEPHALOND_GROUP="cephalon"
+
+# Path to cephalond executable
+#CEPHALOND_BIN="/usr/bin/cephalond"
+
+# Nice value to run cephalond under
+#CEPHALOND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#CEPHALOND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for cephalond to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+CEPHALOND_SIGTERM_TIMEOUT=60

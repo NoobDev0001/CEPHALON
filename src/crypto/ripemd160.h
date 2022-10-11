@@ -1,11 +1,11 @@
 // Copyright (c) 2014-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_CRYPTO_RIPEMD160_H
-#define NEOXA_CRYPTO_RIPEMD160_H
+#ifndef CEPHALON_CRYPTO_RIPEMD160_H
+#define CEPHALON_CRYPTO_RIPEMD160_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -27,4 +27,4 @@ public:
     CRIPEMD160& Reset();
 };
 
-#endif // NEOXA_CRYPTO_RIPEMD160_H
+#endif // CEPHALON_CRYPTO_RIPEMD160_H

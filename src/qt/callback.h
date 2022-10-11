@@ -1,5 +1,5 @@
-#ifndef NEOXA_QT_CALLBACK_H
-#define NEOXA_QT_CALLBACK_H
+#ifndef CEPHALON_QT_CALLBACK_H
+#define CEPHALON_QT_CALLBACK_H
 
 #include <QObject>
 
@@ -27,4 +27,4 @@ FunctionCallback<F>* makeCallback(F f)
     return new FunctionCallback<F>(std::move(f));
 }
 
-#endif // NEOXA_QT_CALLBACK_H
+#endif // CEPHALON_QT_CALLBACK_H

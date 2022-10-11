@@ -35,27 +35,27 @@ RUN apt-get update && \
 	apt-get clean
 
 
-#Build Neoxa from source
-COPY . /home/neoxa/build/Neoxa/
-WORKDIR /home/neoxa/build/Neoxa
+#Build Cephalon from source
+COPY . /home/cephalon/build/Cephalon/
+WORKDIR /home/cephalon/build/Cephalon
 RUN chmod +x ./autogen.sh && chmod +x share/genbuild.sh && ./autogen.sh && ./configure --disable-tests --with-gui=no && make
 
 FROM base AS final
 
 #Add our service account user
-RUN useradd -ms /bin/bash neoxa && \
-	mkdir /var/lib/neoxa && \
-	chown neoxa:neoxa /var/lib/neoxa && \
-	ln -s /var/lib/neoxa /home/neoxa/.neoxa && \
-	chown -h neoxa:neoxa /home/neoxa/.neoxa
+RUN useradd -ms /bin/bash cephalon && \
+	mkdir /var/lib/cephalon && \
+	chown cephalon:cephalon /var/lib/cephalon && \
+	ln -s /var/lib/cephalon /home/cephalon/.cephalon && \
+	chown -h cephalon:cephalon /home/cephalon/.cephalon
 
-VOLUME /var/lib/neoxa
+VOLUME /var/lib/cephalon
 
 #Copy the compiled binaries from the build
-COPY --from=build /home/neoxa/build/Neoxa/src/neoxad /usr/local/bin/neoxad
-COPY --from=build /home/neoxa/build/Neoxa/src/neoxa-cli /usr/local/bin/neoxa-cli
+COPY --from=build /home/cephalon/build/Cephalon/src/cephalond /usr/local/bin/cephalond
+COPY --from=build /home/cephalon/build/Cephalon/src/cephalon-cli /usr/local/bin/cephalon-cli
 
-WORKDIR /home/neoxa
-USER neoxa
+WORKDIR /home/cephalon
+USER cephalon
 
-CMD /usr/local/bin/neoxad -datadir=/var/lib/neoxa -printtoconsole -onlynet=ipv4
+CMD /usr/local/bin/cephalond -datadir=/var/lib/cephalon -printtoconsole -onlynet=ipv4

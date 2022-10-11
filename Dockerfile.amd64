@@ -8,20 +8,20 @@ EXPOSE $PORT
 
 RUN apt-get update && apt-get install -y bash net-tools && apt-get clean
 
-RUN useradd -ms /bin/bash neoxa
+RUN useradd -ms /bin/bash cephalon
 
-RUN mkdir /etc/neoxa
+RUN mkdir /etc/cephalon
 
-RUN mkdir /var/lib/neoxa
+RUN mkdir /var/lib/cephalon
 
-RUN chown neoxa:neoxa /etc/neoxa /var/lib/neoxa
+RUN chown cephalon:cephalon /etc/cephalon /var/lib/cephalon
 
-WORKDIR /home/neoxa
+WORKDIR /home/cephalon
 
-COPY --chown=neoxa:neoxa linux64/* /home/neoxa/
+COPY --chown=cephalon:cephalon linux64/* /home/cephalon/
 
-COPY --chown=neoxa:neoxa run.sh /home/neoxa/
+COPY --chown=cephalon:cephalon run.sh /home/cephalon/
 
-USER neoxa
+USER cephalon
 
-CMD ["/home/neoxa/run.sh"]
+CMD ["/home/cephalon/run.sh"]

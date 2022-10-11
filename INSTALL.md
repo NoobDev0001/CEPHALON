@@ -1,5 +1,5 @@
-Building Neoxa
+Building Cephalon
 ================
 
 See doc/build-*.md for instructions on building the various
-elements of the Neoxa Core reference implementation of Neoxa.
+elements of the Cephalon Core reference implementation of Cephalon.

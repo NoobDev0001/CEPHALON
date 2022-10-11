@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_GUIUTIL_H
-#define NEOXA_QT_GUIUTIL_H
+#ifndef CEPHALON_QT_GUIUTIL_H
+#define CEPHALON_QT_GUIUTIL_H
 
 #include "amount.h"
 #include "fs.h"
@@ -32,7 +32,7 @@ class QWidget;
 class QGraphicsDropShadowEffect;
 QT_END_NAMESPACE
 
-/** Utility functions used by the neoxa Qt UI.
+/** Utility functions used by the cephalon Qt UI.
  */
 namespace GUIUtil
 {
@@ -58,10 +58,10 @@ namespace GUIUtil
     void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent);
     void setupAmountWidget(QLineEdit *widget, QWidget *parent);
 
-    // Parse "neoxa:" URI into recipient object, return true on successful parsing
-    bool parseNeoxaURI(const QUrl &uri, SendCoinsRecipient *out);
-    bool parseNeoxaURI(QString uri, SendCoinsRecipient *out);
-    QString formatNeoxaURI(const SendCoinsRecipient &info);
+    // Parse "cephalon:" URI into recipient object, return true on successful parsing
+    bool parseCephalonURI(const QUrl &uri, SendCoinsRecipient *out);
+    bool parseCephalonURI(QString uri, SendCoinsRecipient *out);
+    QString formatCephalonURI(const SendCoinsRecipient &info);
 
     // Returns true if given address+amount meets "dust" definition
     bool isDust(const QString& address, const CAmount& amount);
@@ -128,7 +128,7 @@ namespace GUIUtil
     void openDebugLogfile();
 
     // Open the config file
-    bool openNeoxaConf();
+    bool openCephalonConf();
 
     // Replace invalid default fonts with known good ones
     void SubstituteFonts(const QString& language);
@@ -273,4 +273,4 @@ namespace GUIUtil
 
 } // namespace GUIUtil
 
-#endif // NEOXA_QT_GUIUTIL_H
+#endif // CEPHALON_QT_GUIUTIL_H

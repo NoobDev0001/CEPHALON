@@ -3,94 +3,94 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/neoxa-qt
-EXTRA_LIBRARIES += qt/libneoxaqt.a
+bin_PROGRAMS += qt/cephalon-qt
+EXTRA_LIBRARIES += qt/libcephalonqt.a
 
-# neoxa qt core #
+# cephalon qt core #
 QT_TS = \
-  qt/locale/neoxa_af.ts \
-  qt/locale/neoxa_af_ZA.ts \
-  qt/locale/neoxa_ar.ts \
-  qt/locale/neoxa_be_BY.ts \
-  qt/locale/neoxa_bg_BG.ts \
-  qt/locale/neoxa_bg.ts \
-  qt/locale/neoxa_ca_ES.ts \
-  qt/locale/neoxa_ca.ts \
-  qt/locale/neoxa_ca@valencia.ts \
-  qt/locale/neoxa_cs.ts \
-  qt/locale/neoxa_cy.ts \
-  qt/locale/neoxa_da.ts \
-  qt/locale/neoxa_de.ts \
-  qt/locale/neoxa_el_GR.ts \
-  qt/locale/neoxa_el.ts \
-  qt/locale/neoxa_en_GB.ts \
-  qt/locale/neoxa_en.ts \
-  qt/locale/neoxa_eo.ts \
-  qt/locale/neoxa_es_AR.ts \
-  qt/locale/neoxa_es_CL.ts \
-  qt/locale/neoxa_es_CO.ts \
-  qt/locale/neoxa_es_DO.ts \
-  qt/locale/neoxa_es_ES.ts \
-  qt/locale/neoxa_es_MX.ts \
-  qt/locale/neoxa_es.ts \
-  qt/locale/neoxa_es_UY.ts \
-  qt/locale/neoxa_es_VE.ts \
-  qt/locale/neoxa_et_EE.ts \
-  qt/locale/neoxa_et.ts \
-  qt/locale/neoxa_eu_ES.ts \
-  qt/locale/neoxa_fa_IR.ts \
-  qt/locale/neoxa_fa.ts \
-  qt/locale/neoxa_fi.ts \
-  qt/locale/neoxa_fr_CA.ts \
-  qt/locale/neoxa_fr_FR.ts \
-  qt/locale/neoxa_fr.ts \
-  qt/locale/neoxa_gl.ts \
-  qt/locale/neoxa_he.ts \
-  qt/locale/neoxa_hi_IN.ts \
-  qt/locale/neoxa_hr.ts \
-  qt/locale/neoxa_hu.ts \
-  qt/locale/neoxa_id_ID.ts \
-  qt/locale/neoxa_it_IT.ts \
-  qt/locale/neoxa_it.ts \
-  qt/locale/neoxa_ja.ts \
-  qt/locale/neoxa_ka.ts \
-  qt/locale/neoxa_kk_KZ.ts \
-  qt/locale/neoxa_ko_KR.ts \
-  qt/locale/neoxa_ku_IQ.ts \
-  qt/locale/neoxa_ky.ts \
-  qt/locale/neoxa_la.ts \
-  qt/locale/neoxa_lt.ts \
-  qt/locale/neoxa_lv_LV.ts \
-  qt/locale/neoxa_mk_MK.ts \
-  qt/locale/neoxa_mn.ts \
-  qt/locale/neoxa_ms_MY.ts \
-  qt/locale/neoxa_nb.ts \
-  qt/locale/neoxa_ne.ts \
-  qt/locale/neoxa_nl.ts \
-  qt/locale/neoxa_pl.ts \
-  qt/locale/neoxa_pt_BR.ts \
-  qt/locale/neoxa_pt_PT.ts \
-  qt/locale/neoxa_ro_RO.ts \
-  qt/locale/neoxa_ro.ts \
-  qt/locale/neoxa_ru.ts \
-  qt/locale/neoxa_sk.ts \
-  qt/locale/neoxa_sl_SI.ts \
-  qt/locale/neoxa_sq.ts \
-  qt/locale/neoxa_sr@latin.ts \
-  qt/locale/neoxa_sr.ts \
-  qt/locale/neoxa_sv.ts \
-  qt/locale/neoxa_ta.ts \
-  qt/locale/neoxa_th_TH.ts \
-  qt/locale/neoxa_tr_TR.ts \
-  qt/locale/neoxa_tr.ts \
-  qt/locale/neoxa_uk.ts \
-  qt/locale/neoxa_ur_PK.ts \
-  qt/locale/neoxa_uz@Cyrl.ts \
-  qt/locale/neoxa_vi.ts \
-  qt/locale/neoxa_vi_VN.ts \
-  qt/locale/neoxa_zh_CN.ts \
-  qt/locale/neoxa_zh_HK.ts \
-  qt/locale/neoxa_zh_TW.ts
+  qt/locale/cephalon_af.ts \
+  qt/locale/cephalon_af_ZA.ts \
+  qt/locale/cephalon_ar.ts \
+  qt/locale/cephalon_be_BY.ts \
+  qt/locale/cephalon_bg_BG.ts \
+  qt/locale/cephalon_bg.ts \
+  qt/locale/cephalon_ca_ES.ts \
+  qt/locale/cephalon_ca.ts \
+  qt/locale/cephalon_ca@valencia.ts \
+  qt/locale/cephalon_cs.ts \
+  qt/locale/cephalon_cy.ts \
+  qt/locale/cephalon_da.ts \
+  qt/locale/cephalon_de.ts \
+  qt/locale/cephalon_el_GR.ts \
+  qt/locale/cephalon_el.ts \
+  qt/locale/cephalon_en_GB.ts \
+  qt/locale/cephalon_en.ts \
+  qt/locale/cephalon_eo.ts \
+  qt/locale/cephalon_es_AR.ts \
+  qt/locale/cephalon_es_CL.ts \
+  qt/locale/cephalon_es_CO.ts \
+  qt/locale/cephalon_es_DO.ts \
+  qt/locale/cephalon_es_ES.ts \
+  qt/locale/cephalon_es_MX.ts \
+  qt/locale/cephalon_es.ts \
+  qt/locale/cephalon_es_UY.ts \
+  qt/locale/cephalon_es_VE.ts \
+  qt/locale/cephalon_et_EE.ts \
+  qt/locale/cephalon_et.ts \
+  qt/locale/cephalon_eu_ES.ts \
+  qt/locale/cephalon_fa_IR.ts \
+  qt/locale/cephalon_fa.ts \
+  qt/locale/cephalon_fi.ts \
+  qt/locale/cephalon_fr_CA.ts \
+  qt/locale/cephalon_fr_FR.ts \
+  qt/locale/cephalon_fr.ts \
+  qt/locale/cephalon_gl.ts \
+  qt/locale/cephalon_he.ts \
+  qt/locale/cephalon_hi_IN.ts \
+  qt/locale/cephalon_hr.ts \
+  qt/locale/cephalon_hu.ts \
+  qt/locale/cephalon_id_ID.ts \
+  qt/locale/cephalon_it_IT.ts \
+  qt/locale/cephalon_it.ts \
+  qt/locale/cephalon_ja.ts \
+  qt/locale/cephalon_ka.ts \
+  qt/locale/cephalon_kk_KZ.ts \
+  qt/locale/cephalon_ko_KR.ts \
+  qt/locale/cephalon_ku_IQ.ts \
+  qt/locale/cephalon_ky.ts \
+  qt/locale/cephalon_la.ts \
+  qt/locale/cephalon_lt.ts \
+  qt/locale/cephalon_lv_LV.ts \
+  qt/locale/cephalon_mk_MK.ts \
+  qt/locale/cephalon_mn.ts \
+  qt/locale/cephalon_ms_MY.ts \
+  qt/locale/cephalon_nb.ts \
+  qt/locale/cephalon_ne.ts \
+  qt/locale/cephalon_nl.ts \
+  qt/locale/cephalon_pl.ts \
+  qt/locale/cephalon_pt_BR.ts \
+  qt/locale/cephalon_pt_PT.ts \
+  qt/locale/cephalon_ro_RO.ts \
+  qt/locale/cephalon_ro.ts \
+  qt/locale/cephalon_ru.ts \
+  qt/locale/cephalon_sk.ts \
+  qt/locale/cephalon_sl_SI.ts \
+  qt/locale/cephalon_sq.ts \
+  qt/locale/cephalon_sr@latin.ts \
+  qt/locale/cephalon_sr.ts \
+  qt/locale/cephalon_sv.ts \
+  qt/locale/cephalon_ta.ts \
+  qt/locale/cephalon_th_TH.ts \
+  qt/locale/cephalon_tr_TR.ts \
+  qt/locale/cephalon_tr.ts \
+  qt/locale/cephalon_uk.ts \
+  qt/locale/cephalon_ur_PK.ts \
+  qt/locale/cephalon_uz@Cyrl.ts \
+  qt/locale/cephalon_vi.ts \
+  qt/locale/cephalon_vi_VN.ts \
+  qt/locale/cephalon_zh_CN.ts \
+  qt/locale/cephalon_zh_HK.ts \
+  qt/locale/cephalon_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -129,10 +129,10 @@ QT_MOC_CPP = \
   qt/moc_assetcontroltreewidget.cpp \
   qt/moc_assetfilterproxy.cpp \
   qt/moc_bantablemodel.cpp \
-  qt/moc_neoxaaddressvalidator.cpp \
-  qt/moc_neoxaamountfield.cpp \
-  qt/moc_neoxagui.cpp \
-  qt/moc_neoxaunits.cpp \
+  qt/moc_cephalonaddressvalidator.cpp \
+  qt/moc_cephalonamountfield.cpp \
+  qt/moc_cephalongui.cpp \
+  qt/moc_cephalonunits.cpp \
   qt/moc_callback.cpp \
   qt/moc_clientmodel.cpp \
   qt/moc_coincontroldialog.cpp \
@@ -184,28 +184,28 @@ QT_MOC_CPP = \
   qt/moc_sendassetsentry.cpp \
   qt/moc_mnemonicdialog.cpp
 
-NEOXA_MM = \
+CEPHALON_MM = \
   qt/macdockiconhandler.mm \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/neoxa.moc \
-  qt/neoxaamountfield.moc \
+  qt/cephalon.moc \
+  qt/cephalonamountfield.moc \
   qt/callback.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_neoxa.cpp
-QT_QRC = qt/neoxa.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_neoxa_locale.cpp
-QT_QRC_LOCALE = qt/neoxa_locale.qrc
+QT_QRC_CPP = qt/qrc_cephalon.cpp
+QT_QRC = qt/cephalon.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_cephalon_locale.cpp
+QT_QRC_LOCALE = qt/cephalon_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
 PROTOBUF_PROTO = qt/paymentrequest.proto
 
-NEOXA_QT_H = \
+CEPHALON_QT_H = \
   qt/addressbookpage.h \
   qt/addresstablemodel.h \
   qt/askpassphrasedialog.h \
@@ -216,10 +216,10 @@ NEOXA_QT_H = \
   qt/assetsdialog.h \
   qt/createassetdialog.h \
   qt/bantablemodel.h \
-  qt/neoxaaddressvalidator.h \
-  qt/neoxaamountfield.h \
-  qt/neoxagui.h \
-  qt/neoxaunits.h \
+  qt/cephalonaddressvalidator.h \
+  qt/cephalonamountfield.h \
+  qt/cephalongui.h \
+  qt/cephalonunits.h \
   qt/callback.h \
   qt/clientmodel.h \
   qt/coincontroldialog.h \
@@ -290,10 +290,10 @@ RES_ICONS = \
   qt/res/icons/asset_manage_selected.png \
   qt/res/icons/asset_transfer.png \
   qt/res/icons/asset_transfer_selected.png \
-  qt/res/icons/neoxacointext.png \
-  qt/res/icons/neoxa.ico \
-  qt/res/icons/neoxa_testnet.ico \
-  qt/res/icons/neoxa.png \
+  qt/res/icons/cephaloncointext.png \
+  qt/res/icons/cephalon.ico \
+  qt/res/icons/cephalon_testnet.ico \
+  qt/res/icons/cephalon.png \
   qt/res/icons/chevron.png \
   qt/res/icons/clock1.png \
   qt/res/icons/clock2.png \
@@ -386,12 +386,12 @@ RES_ICONS = \
   qt/res/fonts/OpenSans-SemiBoldItalic.ttf
 
 
-NEOXA_QT_BASE_CPP = \
+CEPHALON_QT_BASE_CPP = \
   qt/bantablemodel.cpp \
-  qt/neoxaaddressvalidator.cpp \
-  qt/neoxaamountfield.cpp \
-  qt/neoxagui.cpp \
-  qt/neoxaunits.cpp \
+  qt/cephalonaddressvalidator.cpp \
+  qt/cephalonamountfield.cpp \
+  qt/cephalongui.cpp \
+  qt/cephalonunits.cpp \
   qt/clientmodel.cpp \
   qt/csvmodelwriter.cpp \
   qt/darkstyle.cpp \
@@ -412,9 +412,9 @@ NEOXA_QT_BASE_CPP = \
   qt/trafficgraphwidget.cpp \
   qt/utilitydialog.cpp
 
-NEOXA_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+CEPHALON_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
 
-NEOXA_QT_WALLET_CPP = \
+CEPHALON_QT_WALLET_CPP = \
   qt/addressbookpage.cpp \
   qt/addresstablemodel.cpp \
   qt/askpassphrasedialog.cpp \
@@ -456,31 +456,31 @@ NEOXA_QT_WALLET_CPP = \
   qt/walletview.cpp \
   qt/mnemonicdialog.cpp
 
-NEOXA_QT_CPP = $(NEOXA_QT_BASE_CPP)
+CEPHALON_QT_CPP = $(CEPHALON_QT_BASE_CPP)
 if TARGET_WINDOWS
-NEOXA_QT_CPP += $(NEOXA_QT_WINDOWS_CPP)
+CEPHALON_QT_CPP += $(CEPHALON_QT_WINDOWS_CPP)
 endif
 if ENABLE_WALLET
-NEOXA_QT_CPP += $(NEOXA_QT_WALLET_CPP)
+CEPHALON_QT_CPP += $(CEPHALON_QT_WALLET_CPP)
 endif
 
 RES_IMAGES = 
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-NEOXA_RC = qt/res/neoxa-qt-res.rc
+CEPHALON_RC = qt/res/cephalon-qt-res.rc
 
-NEOXA_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+CEPHALON_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
 
-qt_libneoxaqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES) $(NEOXA_QT_INCLUDES) \
+qt_libcephalonqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES) $(CEPHALON_QT_INCLUDES) \
   $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_libneoxaqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libcephalonqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_libneoxaqt_a_SOURCES = $(NEOXA_QT_CPP) $(NEOXA_QT_H) $(QT_FORMS_UI) \
+qt_libcephalonqt_a_SOURCES = $(CEPHALON_QT_CPP) $(CEPHALON_QT_H) $(QT_FORMS_UI) \
   $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES)
 
-nodist_qt_libneoxaqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+nodist_qt_libcephalonqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
   $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
 
 # forms/foo.h -> forms/ui_foo.h
@@ -489,71 +489,71 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libneoxaqt_a_OBJECTS) $(qt_neoxa_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libcephalonqt_a_OBJECTS) $(qt_cephalon_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# neoxa-qt binary #
-qt_neoxa_qt_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES) $(NEOXA_QT_INCLUDES) \
+# cephalon-qt binary #
+qt_cephalon_qt_CPPFLAGS = $(AM_CPPFLAGS) $(CEPHALON_INCLUDES) $(CEPHALON_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_neoxa_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_cephalon_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_neoxa_qt_SOURCES = qt/neoxa.cpp
+qt_cephalon_qt_SOURCES = qt/cephalon.cpp
 if TARGET_DARWIN
-  qt_neoxa_qt_SOURCES += $(NEOXA_MM)
+  qt_cephalon_qt_SOURCES += $(CEPHALON_MM)
 endif
 if TARGET_WINDOWS
-  qt_neoxa_qt_SOURCES += $(NEOXA_RC)
+  qt_cephalon_qt_SOURCES += $(CEPHALON_RC)
 endif
-qt_neoxa_qt_LDADD = qt/libneoxaqt.a $(LIBNEOXA_SERVER)
+qt_cephalon_qt_LDADD = qt/libcephalonqt.a $(LIBCEPHALON_SERVER)
 if ENABLE_WALLET
-qt_neoxa_qt_LDADD += $(LIBNEOXA_WALLET)
+qt_cephalon_qt_LDADD += $(LIBCEPHALON_WALLET)
 endif
 if ENABLE_ZMQ
-qt_neoxa_qt_LDADD += $(LIBNEOXA_ZMQ) $(ZMQ_LIBS)
+qt_cephalon_qt_LDADD += $(LIBCEPHALON_ZMQ) $(ZMQ_LIBS)
 endif
-qt_neoxa_qt_LDADD += $(LIBneoxa_cli) $(LIBNEOXA_COMMON) $(LIBNEOXA_UTIL) $(LIBNEOXA_CONSENSUS) $(LIBNEOXA_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+qt_cephalon_qt_LDADD += $(LIBcephalon_cli) $(LIBCEPHALON_COMMON) $(LIBCEPHALON_UTIL) $(LIBCEPHALON_CONSENSUS) $(LIBCEPHALON_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_neoxa_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_neoxa_qt_LIBTOOLFLAGS = --tag CXX
+qt_cephalon_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_cephalon_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/neoxastrings.cpp: $(libneoxa_server_a_SOURCES) $(libneoxa_wallet_a_SOURCES) $(libneoxa_common_a_SOURCES) $(libneoxa_zmq_a_SOURCES) $(libneoxa_consensus_a_SOURCES) $(libneoxa_util_a_SOURCES)
+$(srcdir)/qt/cephalonstrings.cpp: $(libcephalon_server_a_SOURCES) $(libcephalon_wallet_a_SOURCES) $(libcephalon_common_a_SOURCES) $(libcephalon_zmq_a_SOURCES) $(libcephalon_consensus_a_SOURCES) $(libcephalon_util_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" COPYRIGHT_HOLDERS_SUBSTITUTION="$(COPYRIGHT_HOLDERS_SUBSTITUTION)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: $(srcdir)/qt/neoxastrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(NEOXA_QT_BASE_CPP) qt/neoxa.cpp $(NEOXA_QT_WINDOWS_CPP) $(NEOXA_QT_WALLET_CPP) $(NEOXA_QT_H) $(NEOXA_MM)
+translate: $(srcdir)/qt/cephalonstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(CEPHALON_QT_BASE_CPP) qt/cephalon.cpp $(CEPHALON_QT_WINDOWS_CPP) $(CEPHALON_QT_WALLET_CPP) $(CEPHALON_QT_H) $(CEPHALON_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/neoxa_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/cephalon_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@cp -f $< $(@D)/temp_$(<F)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name neoxa_locale $(@D)/temp_$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name cephalon_locale $(@D)/temp_$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 	@rm $(@D)/temp_$(<F)
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name neoxa $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name cephalon $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-CLEAN_QT = $(nodist_qt_libneoxaqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
+CLEAN_QT = $(nodist_qt_libcephalonqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
-neoxa_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libneoxaqt_a_OBJECTS) $(qt_neoxa_qt_OBJECTS) qt/neoxa-qt$(EXEEXT) $(LIBNEOXAQT)
+cephalon_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libcephalonqt_a_OBJECTS) $(qt_cephalon_qt_OBJECTS) qt/cephalon-qt$(EXEEXT) $(LIBCEPHALONQT)
 
-neoxa_qt : qt/neoxa-qt$(EXEEXT)
+cephalon_qt : qt/cephalon-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

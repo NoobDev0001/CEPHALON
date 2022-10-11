@@ -1,0 +1,92 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/cephalon/.cephalon" ]; then
+	CEPHALOND_DEFAULT_DATADIR="/var/lib/cephalon/.cephalon"
+else
+	CEPHALOND_DEFAULT_DATADIR="/var/lib/cephalond"
+fi
+
+CEPHALOND_CONFIGFILE=${CEPHALOND_CONFIGFILE:-/etc/cephalon/cephalon.conf}
+CEPHALOND_PIDDIR=${CEPHALOND_PIDDIR:-/var/run/cephalond}
+CEPHALOND_PIDFILE=${CEPHALOND_PIDFILE:-${CEPHALOND_PIDDIR}/cephalond.pid}
+CEPHALOND_DATADIR=${CEPHALOND_DATADIR:-${CEPHALOND_DEFAULT_DATADIR}}
+CEPHALOND_USER=${CEPHALOND_USER:-${CEPHALON_USER:-cephalon}}
+CEPHALOND_GROUP=${CEPHALOND_GROUP:-cephalon}
+CEPHALOND_BIN=${CEPHALOND_BIN:-/usr/bin/cephalond}
+CEPHALOND_NICE=${CEPHALOND_NICE:-${NICELEVEL:-0}}
+CEPHALOND_OPTS="${CEPHALOND_OPTS:-${CEPHALON_OPTS}}"
+
+name="Cephalon Core Daemon"
+description="Cephalon cryptocurrency P2P network daemon"
+
+command="/usr/bin/cephalond"
+command_args="-pid=\"${CEPHALOND_PIDFILE}\" \
+		-conf=\"${CEPHALOND_CONFIGFILE}\" \
+		-datadir=\"${CEPHALOND_DATADIR}\" \
+		-daemon \
+		${CEPHALOND_OPTS}"
+
+required_files="${CEPHALOND_CONFIGFILE}"
+start_stop_daemon_args="-u ${CEPHALOND_USER} \
+			-N ${CEPHALOND_NICE} -w 2000"
+pidfile="${CEPHALOND_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${CEPHALOND_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${CEPHALOND_USER}:${CEPHALOND_GROUP}" \
+	"${CEPHALOND_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${CEPHALOND_USER}:${CEPHALOND_GROUP}" \
+	"${CEPHALOND_PIDDIR}"
+
+	checkpath -f \
+	-o ${CEPHALOND_USER}:${CEPHALOND_GROUP} \
+	-m 0660 \
+	${CEPHALOND_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${CEPHALOND_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run cephalond."
+		eerror "The setting must appear in ${CEPHALOND_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following "
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"Cephalon Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

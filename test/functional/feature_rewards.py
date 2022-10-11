@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Cephalon Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """Testing rewards use cases"""
 
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import CephalonTestFramework
 from test_framework.util import assert_equal, assert_raises_rpc_error, assert_contains, Decimal
 
 # noinspection PyAttributeOutsideInit
-class RewardsTest(NeoxaTestFramework):
+class RewardsTest(CephalonTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 4
@@ -457,7 +457,7 @@ class RewardsTest(NeoxaTestFramework):
                                 "For security of the rewards payout, it is recommended to wait until chain is 60 blocks ahead of the snapshot height. You can modify this by using the -minrewardsheight.",
                                 n0.distributereward, "STOCK6", tgt_block_height, "NEOX", 2000, owner_addr0)
 
-    # Attempts a payout using a custom rewards height of 15, and they have low neoxa balance
+    # Attempts a payout using a custom rewards height of 15, and they have low cephalon balance
     def payout_custom_height_set_with_low_funds(self):
         self.log.info("Running payout before minimum rewards height is reached with custom min height value set!")
         n0, n1, n2 = self.nodes[0], self.nodes[1], self.nodes[2]

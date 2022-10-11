@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_SPENTINDEX_H
-#define NEOXA_SPENTINDEX_H
+#ifndef CEPHALON_SPENTINDEX_H
+#define CEPHALON_SPENTINDEX_H
 
 #include "uint256.h"
 #include "amount.h"
@@ -95,4 +95,4 @@ struct CSpentIndexKeyCompare
     }
 };
 
-#endif // NEOXA_SPENTINDEX_H
+#endif // CEPHALON_SPENTINDEX_H

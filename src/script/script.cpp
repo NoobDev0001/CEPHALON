@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include "streams.h"
@@ -144,9 +144,9 @@ const char* GetOpName(opcodetype opcode)
     case OP_NOP9                   : return "OP_NOP9";
     case OP_NOP10                  : return "OP_NOP10";
 
-    /** NEOXA START */
+    /** CEPHALON START */
     case OP_NEOX_ASSET              : return "OP_NEOX_ASSET";
-    /** NEOXA END */
+    /** CEPHALON END */
 
     case OP_INVALIDOPCODE          : return "OP_INVALIDOPCODE";
 
@@ -228,7 +228,7 @@ bool CScript::IsPayToScriptHash() const
             (*this)[22] == OP_EQUAL);
 }
 
-/** NEOXA START */
+/** CEPHALON START */
 bool CScript::IsAssetScript() const
 {
     int nType = 0;
@@ -354,7 +354,7 @@ bool CScript::IsNullAssetVerifierTxDataScript() const
             (*this)[1] == OP_RESERVED &&
             (*this)[2] != OP_RESERVED);
 }
-/** NEOXA END */
+/** CEPHALON END */
 
 bool CScript::IsPayToWitnessScriptHash() const
 {

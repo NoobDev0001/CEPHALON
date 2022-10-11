@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_CUCKOOCACHE_H
-#define NEOXA_CUCKOOCACHE_H
+#ifndef CEPHALON_CUCKOOCACHE_H
+#define CEPHALON_CUCKOOCACHE_H
 
 #include <array>
 #include <algorithm>
@@ -478,4 +478,4 @@ public:
 };
 } // namespace CuckooCache
 
-#endif // NEOXA_CUCKOOCACHE_H
+#endif // CEPHALON_CUCKOOCACHE_H

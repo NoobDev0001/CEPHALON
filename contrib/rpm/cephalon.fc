@@ -1,0 +1,8 @@
+/usr/bin/cephalon-cli		--	gen_context(system_u:object_r:cephalon_exec_t,s0)
+/usr/sbin/cephalond		--	gen_context(system_u:object_r:cephalon_exec_t,s0)
+/usr/lib(64)?/cephalon/cephalond		--	gen_context(system_u:object_r:cephalon_exec_t,s0)
+
+/etc/cephalon(/.*)?		gen_context(system_u:object_r:cephalon_conf_t,s0)
+/var/lib/cephalon(/.*)?		gen_context(system_u:object_r:cephalon_var_lib_t,s0)
+
+(/var)?/run/cephalond(/.*)?   gen_context(system_u:object_r:cephalon_var_run_t,s0)

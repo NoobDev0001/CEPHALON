@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_NETMESSAGEMAKER_H
-#define NEOXA_NETMESSAGEMAKER_H
+#ifndef CEPHALON_NETMESSAGEMAKER_H
+#define CEPHALON_NETMESSAGEMAKER_H
 
 #include "net.h"
 #include "serialize.h"
@@ -35,4 +35,4 @@ private:
     const int nVersion;
 };
 
-#endif // NEOXA_NETMESSAGEMAKER_H
+#endif // CEPHALON_NETMESSAGEMAKER_H

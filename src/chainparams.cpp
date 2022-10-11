@@ -242,9 +242,9 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("fc14e6be446c8d033962db83d325dbebc480719761aa62a376b8af33e581db63"));
 
 
-    //     vSeeds.emplace_back("seed.neoxa.net", false);
-	// vSeeds.emplace_back("seed1.neoxa.net", false);
-	// vSeeds.emplace_back("seed2.neoxa.net", false); 
+    //     vSeeds.emplace_back("seed.cephalon.net", false);
+	// vSeeds.emplace_back("seed1.cephalon.net", false);
+	// vSeeds.emplace_back("seed2.cephalon.net", false); 
 
         // Address start with G
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
@@ -253,7 +253,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        // NEOXA BIP44 cointype in mainnet is '1668'
+        // CEPHALON BIP44 cointype in mainnet is '1668'
         nExtCoinType = 1668;
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -281,7 +281,7 @@ public:
         };
 
         chainTxData = ChainTxData{
-            // // Update as we know more about the contents of the Neoxa chain
+            // // Update as we know more about the contents of the Cephalon chain
         	// 1662386772, // * UNIX timestamp of last known number of transactions 2021-06-18 22:03:06 UTC
             // 130153,    // * total number of transactions between genesis and that timestamp
             //             //   (the tx=... number in the SetBestChain debug.log lines)
@@ -411,7 +411,7 @@ public:
 		
         vFixedSeeds.clear();
         vSeeds.clear();
-	      vSeeds.emplace_back("testnet.neoxa.net", false);
+	      vSeeds.emplace_back("testnet.cephalon.net", false);
 		
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);
@@ -419,7 +419,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Neoxa BIP44 cointype in testnet
+        // Cephalon BIP44 cointype in testnet
         nExtCoinType = 1;
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -435,14 +435,14 @@ public:
         };
 
         chainTxData = ChainTxData{
-            // Update as we know more about the contents of the Neoxa chain
+            // Update as we know more about the contents of the Cephalon chain
             1658331968, // * UNIX timestamp of last known number of transactions
             4108,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0.01518114964117619        // * estimated number of transactions per second after that timestamp
         };
 
-        /** NEOXA Start **/
+        /** CEPHALON Start **/
         // Burn Amounts
         nIssueAssetBurnAmount = 500 * COIN;
         nReissueAssetBurnAmount = 100 * COIN;
@@ -486,7 +486,7 @@ public:
 
         nKAAAWWWPOWActivationTime = 1653247613; // 2021-05-03 06:00:18
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
-        /** NEOXA End **/
+        /** CEPHALON End **/
     }
 };
 
@@ -586,10 +586,10 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Neoxa BIP44 cointype in regtest
+        // Cephalon BIP44 cointype in regtest
         nExtCoinType = 1;
 
-        /** NEOXA Start **/
+        /** CEPHALON Start **/
         // Burn Amounts
         nIssueAssetBurnAmount = 500 * COIN;
         nReissueAssetBurnAmount = 100 * COIN;
@@ -636,7 +636,7 @@ public:
         // If you are looking to test the kawpow hashing function in regtest. You will need to change this number
         nKAAAWWWPOWActivationTime = 3582830167;
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
-        /** NEOXA End **/
+        /** CEPHALON End **/
     }
 };
 

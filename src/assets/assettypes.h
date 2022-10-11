@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXACOIN_NEWASSET_H
-#define NEOXACOIN_NEWASSET_H
+#ifndef CEPHALONCOIN_NEWASSET_H
+#define CEPHALONCOIN_NEWASSET_H
 
 #include <string>
 #include <sstream>
@@ -652,4 +652,4 @@ private:
     size_t maxSize;
 };
 
-#endif //NEOXACOIN_NEWASSET_H
+#endif //CEPHALONCOIN_NEWASSET_H

@@ -6,7 +6,7 @@
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
 
-#include "neoxaunits.h"
+#include "cephalonunits.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "guiutil.h"
@@ -45,7 +45,7 @@ class TxViewDelegate : public QAbstractItemDelegate
     Q_OBJECT
 public:
     explicit TxViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
-        QAbstractItemDelegate(parent), unit(NeoxaUnits::NEOX),
+        QAbstractItemDelegate(parent), unit(CephalonUnits::NEOX),
         platformStyle(_platformStyle)
     {
 
@@ -154,7 +154,7 @@ class AssetViewDelegate : public QAbstractItemDelegate
 Q_OBJECT
 public:
     explicit AssetViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
-            QAbstractItemDelegate(parent), unit(NeoxaUnits::NEOX),
+            QAbstractItemDelegate(parent), unit(CephalonUnits::NEOX),
             platformStyle(_platformStyle)
     {
 
@@ -298,7 +298,7 @@ public:
 
 };
 #include "overviewpage.moc"
-#include "neoxagui.h"
+#include "cephalongui.h"
 #include <QFontDatabase>
 
 OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) :
@@ -367,7 +367,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
 
     /** Update the labels colors */
     ui->assetBalanceLabel->setStyleSheet(STRING_LABEL_COLOR);
-    ui->neoxaBalancesLabel->setStyleSheet(STRING_LABEL_COLOR);
+    ui->cephalonBalancesLabel->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelBalanceText->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelPendingText->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelImmatureText->setStyleSheet(STRING_LABEL_COLOR);
@@ -377,7 +377,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->recentTransactionsLabel->setStyleSheet(STRING_LABEL_COLOR);
 
     /** Update the labels font */
-    ui->neoxaBalancesLabel->setFont(GUIUtil::getTopLabelFont());
+    ui->cephalonBalancesLabel->setFont(GUIUtil::getTopLabelFont());
     ui->assetBalanceLabel->setFont(GUIUtil::getTopLabelFont());
     ui->recentTransactionsLabel->setFont(GUIUtil::getTopLabelFont());
 
@@ -547,14 +547,14 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     currentWatchOnlyBalance = watchOnlyBalance;
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
-    ui->labelBalance->setText(NeoxaUnits::formatWithUnit(unit, balance, false, NeoxaUnits::separatorAlways));
-    ui->labelUnconfirmed->setText(NeoxaUnits::formatWithUnit(unit, unconfirmedBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelImmature->setText(NeoxaUnits::formatWithUnit(unit, immatureBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelTotal->setText(NeoxaUnits::formatWithUnit(unit, balance + unconfirmedBalance + immatureBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelWatchAvailable->setText(NeoxaUnits::formatWithUnit(unit, watchOnlyBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelWatchPending->setText(NeoxaUnits::formatWithUnit(unit, watchUnconfBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelWatchImmature->setText(NeoxaUnits::formatWithUnit(unit, watchImmatureBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelWatchTotal->setText(NeoxaUnits::formatWithUnit(unit, watchOnlyBalance + watchUnconfBalance + watchImmatureBalance, false, NeoxaUnits::separatorAlways));
+    ui->labelBalance->setText(CephalonUnits::formatWithUnit(unit, balance, false, CephalonUnits::separatorAlways));
+    ui->labelUnconfirmed->setText(CephalonUnits::formatWithUnit(unit, unconfirmedBalance, false, CephalonUnits::separatorAlways));
+    ui->labelImmature->setText(CephalonUnits::formatWithUnit(unit, immatureBalance, false, CephalonUnits::separatorAlways));
+    ui->labelTotal->setText(CephalonUnits::formatWithUnit(unit, balance + unconfirmedBalance + immatureBalance, false, CephalonUnits::separatorAlways));
+    ui->labelWatchAvailable->setText(CephalonUnits::formatWithUnit(unit, watchOnlyBalance, false, CephalonUnits::separatorAlways));
+    ui->labelWatchPending->setText(CephalonUnits::formatWithUnit(unit, watchUnconfBalance, false, CephalonUnits::separatorAlways));
+    ui->labelWatchImmature->setText(CephalonUnits::formatWithUnit(unit, watchImmatureBalance, false, CephalonUnits::separatorAlways));
+    ui->labelWatchTotal->setText(CephalonUnits::formatWithUnit(unit, watchOnlyBalance + watchUnconfBalance + watchImmatureBalance, false, CephalonUnits::separatorAlways));
 
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users

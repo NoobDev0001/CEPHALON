@@ -69,10 +69,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/neoxa
-pkgincludedir = $(includedir)/neoxa
-pkglibdir = $(libdir)/neoxa
-pkglibexecdir = $(libexecdir)/neoxa
+pkgdatadir = $(datadir)/cephalon
+pkgincludedir = $(includedir)/cephalon
+pkglibdir = $(libdir)/cephalon
+pkglibexecdir = $(libexecdir)/cephalon
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -87,10 +87,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
-am__append_1 = neoxad.1
-am__append_2 = neoxa-qt.1
-am__append_3 = neoxa-cli.1
-#am__append_4 = neoxa-tx.1
+am__append_1 = cephalond.1
+am__append_2 = cephalon-qt.1
+am__append_3 = cephalon-cli.1
+#am__append_4 = cephalon-tx.1
 subdir = doc/man
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/build-aux/m4/ax_boost_base.m4 \
@@ -106,21 +106,21 @@ am__aclocal_m4_deps = $(top_srcdir)/build-aux/m4/ax_boost_base.m4 \
 	$(top_srcdir)/build-aux/m4/ax_cxx_compile_stdcxx.m4 \
 	$(top_srcdir)/build-aux/m4/ax_gcc_func_attribute.m4 \
 	$(top_srcdir)/build-aux/m4/ax_pthread.m4 \
+	$(top_srcdir)/build-aux/m4/cephalon_find_bdb48.m4 \
+	$(top_srcdir)/build-aux/m4/cephalon_qt.m4 \
+	$(top_srcdir)/build-aux/m4/cephalon_subdir_to_include.m4 \
 	$(top_srcdir)/build-aux/m4/l_atomic.m4 \
 	$(top_srcdir)/build-aux/m4/libtool.m4 \
 	$(top_srcdir)/build-aux/m4/ltoptions.m4 \
 	$(top_srcdir)/build-aux/m4/ltsugar.m4 \
 	$(top_srcdir)/build-aux/m4/ltversion.m4 \
 	$(top_srcdir)/build-aux/m4/lt~obsolete.m4 \
-	$(top_srcdir)/build-aux/m4/neoxa_find_bdb48.m4 \
-	$(top_srcdir)/build-aux/m4/neoxa_qt.m4 \
-	$(top_srcdir)/build-aux/m4/neoxa_subdir_to_include.m4 \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/src/config/neoxa-config.h
+CONFIG_HEADER = $(top_builddir)/src/config/cephalon-config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_P = $(am__v_P_$(V))
@@ -201,6 +201,9 @@ BREW =
 CC = gcc
 CCACHE = 
 CCDEPMODE = depmode=gcc3
+CEPHALON_DAEMON_NAME = cephalond
+CEPHALON_GUI_NAME = cephalon-qt
+CEPHALON_TX_NAME = cephalon-tx
 CFLAGS = -g -O2
 CLIENT_VERSION_BUILD = 2
 CLIENT_VERSION_IS_RELEASE = true
@@ -209,8 +212,8 @@ CLIENT_VERSION_MINOR = 4
 CLIENT_VERSION_REVISION = 4
 COMPAT_LDFLAGS = 
 COPYRIGHT_HOLDERS = The %s developers
-COPYRIGHT_HOLDERS_FINAL = The Neoxa Core developers
-COPYRIGHT_HOLDERS_SUBSTITUTION = Neoxa Core
+COPYRIGHT_HOLDERS_FINAL = The Cephalon Core developers
+COPYRIGHT_HOLDERS_SUBSTITUTION = Cephalon Core
 COPYRIGHT_YEAR = 2021
 CPP = gcc -E
 CPPFILT = /usr/bin/c++filt
@@ -287,9 +290,6 @@ MINIUPNPC_LIBS =
 MKDIR_P = /usr/bin/mkdir -p
 MOC = /usr/lib/x86_64-linux-gnu/qt5/bin/moc
 MOC_DEFS = -DHAVE_CONFIG_H -I$(srcdir)
-NEOXA_DAEMON_NAME = neoxad
-NEOXA_GUI_NAME = neoxa-qt
-NEOXA_TX_NAME = neoxa-tx
 NM = /usr/bin/nm -B
 NMEDIT = 
 OBJCOPY = /usr/bin/objcopy
@@ -300,12 +300,12 @@ OBJDUMP = objdump
 OBJEXT = o
 OTOOL = 
 OTOOL64 = 
-PACKAGE = neoxa
-PACKAGE_BUGREPORT = https://github.com/NeoxaChain/Neoxa/issues
-PACKAGE_NAME = Neoxa Core
-PACKAGE_STRING = Neoxa Core 4.4.4
-PACKAGE_TARNAME = neoxa
-PACKAGE_URL = https://neoxa.net
+PACKAGE = cephalon
+PACKAGE_BUGREPORT = https://github.com/CephalonChain/Cephalon/issues
+PACKAGE_NAME = Cephalon Core
+PACKAGE_STRING = Cephalon Core 4.4.4
+PACKAGE_TARNAME = cephalon
+PACKAGE_URL = https://cephalon.net
 PACKAGE_VERSION = 4.4.4
 PATH_SEPARATOR = :
 PIC_FLAGS = -fPIC
@@ -395,6 +395,7 @@ build_cpu = x86_64
 build_os = linux-gnu
 build_vendor = pc
 builddir = .
+cephalon_cli_NAME = cephalon-cli
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
@@ -415,7 +416,6 @@ localedir = ${datarootdir}/locale
 localstatedir = ${prefix}/var
 mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
-neoxa_cli_NAME = neoxa-cli
 oldincludedir = /usr/include
 pdfdir = ${docdir}
 prefix = /usr/local

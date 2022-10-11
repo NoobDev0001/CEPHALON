@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
 env
-if [[ -e /etc/neoxa/neoxad.conf ]]; then
-    source /etc/neoxa/neoxad.conf
-    /home/neoxa/neoxad \
+if [[ -e /etc/cephalon/cephalond.conf ]]; then
+    source /etc/cephalon/cephalond.conf
+    /home/cephalon/cephalond \
       -server=$SERVER \
       -printtoconsole=$PRINTTOCONSOLE \
       -maxconnections=$MAXCONNECTIONS \
@@ -37,7 +37,7 @@ else
     $SERVER_ARG = "-server=$SERVER"
   fi
 
-  /home/neoxa/neoxad \
+  /home/cephalon/cephalond \
     $SERVER_ARG \
     -printtoconsole=$PRINTTOCONSOLE \
     -maxconnections=$MAXCONNECTIONS \

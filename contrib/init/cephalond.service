@@ -1,0 +1,22 @@
+[Unit]
+Description=Cephalon's distributed currency daemon
+After=network.target
+
+[Service]
+User=cephalon
+Group=cephalon
+
+Type=forking
+PIDFile=/var/lib/cephalond/cephalond.pid
+ExecStart=/usr/bin/cephalond -daemon -pid=/var/lib/cephalond/cephalond.pid \
+-conf=/etc/cephalon/cephalon.conf -datadir=/var/lib/cephalond -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

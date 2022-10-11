@@ -23,7 +23,7 @@ don't have test cases for.
 - Avoid wildcard imports where possible
 - Use a module-level docstring to describe what the test is testing, and how it
   is testing it.
-- When subclassing the NeoxaTestFramwork, place overrides for the
+- When subclassing the CephalonTestFramwork, place overrides for the
   `set_test_params()`, `add_options()` and `setup_xxxx()` methods at the top of
   the subclass, then locally-defined helper methods, then the `run_test()` method.
 
@@ -60,10 +60,10 @@ over the network (`CBlock`, `CTransaction`, etc, along with the network-level
 wrappers for them, `msg_block`, `msg_tx`, etc).
 
 - P2P tests have two threads. One thread handles all network communication
-with the neoxad(s) being tested (using python's asyncore package); the other
+with the cephalond(s) being tested (using python's asyncore package); the other
 implements the test logic.
 
-- `NodeConn` is the class used to connect to a neoxad.  If you implement
+- `NodeConn` is the class used to connect to a cephalond.  If you implement
 a callback class that derives from `NodeConnCB` and pass that to the
 `NodeConn` object, your code will receive the appropriate callbacks when
 events of interest arrive.
@@ -78,7 +78,7 @@ Examples tests are `p2p-accept-block.py`, `p2p-compactblocks.py`.
 ### test-framework modules
 
 #### [test_framework/authproxy.py](test_framework/authproxy.py)
-Taken from the [python-NeoxaRPC repository](https://github.com/jgarzik/python-NeoxaRPC).
+Taken from the [python-CephalonRPC repository](https://github.com/jgarzik/python-CephalonRPC).
 
 #### [test_framework/test_framework.py](test_framework/test_framework.py)
 Base class for functional tests.
@@ -87,13 +87,13 @@ Base class for functional tests.
 Generally useful functions.
 
 #### [test_framework/mininode.py](test_framework/mininode.py)
-Basic code to support P2P connectivity to a neoxad.
+Basic code to support P2P connectivity to a cephalond.
 
 #### [test_framework/script.py](test_framework/script.py)
-Utilities for manipulating transaction scripts (originally from python-neoxalib)
+Utilities for manipulating transaction scripts (originally from python-cephalonlib)
 
 #### [test_framework/key.py](test_framework/key.py)
-Wrapper around OpenSSL EC_Key (originally from python-neoxalib)
+Wrapper around OpenSSL EC_Key (originally from python-cephalonlib)
 
 #### [test_framework/bignum.py](test_framework/bignum.py)
 Helpers for script.py

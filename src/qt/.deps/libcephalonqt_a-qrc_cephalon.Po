@@ -1,0 +1,2 @@
+qt/libcephalonqt_a-qrc_cephalon.o: qt/qrc_cephalon.cpp /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:

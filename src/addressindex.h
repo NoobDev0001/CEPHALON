@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_ADDRESSINDEX_H
-#define NEOXA_ADDRESSINDEX_H
+#ifndef CEPHALON_ADDRESSINDEX_H
+#define CEPHALON_ADDRESSINDEX_H
 
 #include "uint256.h"
 #include "amount.h"
@@ -406,4 +406,4 @@ struct CMempoolAddressDeltaKeyCompare
     }
 };
 
-#endif // NEOXA_ADDRESSINDEX_H
+#endif // CEPHALON_ADDRESSINDEX_H

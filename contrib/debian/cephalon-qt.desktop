@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Cephalon Core
+Comment=Connect to the Cephalon P2P Network
+Comment[de]=Verbinde mit dem Cephalon peer-to-peer Netzwerk
+Comment[fr]=Cephalon, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Cephalon, eşten eşe kriptografik sanal para birimi
+Exec=cephalon-qt %u
+Terminal=false
+Type=Application
+Icon=cephalon128
+MimeType=x-scheme-handler/cephalon;
+Categories=Office;Finance;

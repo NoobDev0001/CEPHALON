@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,8 +13,8 @@
  * - E-mail usually won't line-break if there's no punctuation to break at.
  * - Double-clicking selects the whole string as one word if it's all alphanumeric.
  */
-#ifndef NEOXA_BASE58_H
-#define NEOXA_BASE58_H
+#ifndef CEPHALON_BASE58_H
+#define CEPHALON_BASE58_H
 
 #include "chainparams.h"
 #include "key.h"
@@ -95,13 +95,13 @@ public:
     bool operator< (const CBase58Data& b58) const { return CompareTo(b58) <  0; }
     bool operator> (const CBase58Data& b58) const { return CompareTo(b58) >  0; }
 };
-/** base58-encoded Neoxa addresses.
+/** base58-encoded Cephalon addresses.
  * Public-key-hash-addresses have version 0 (or 111 testnet).
  * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
  * Script-hash-addresses have version 5 (or 196 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
  */
-class CNeoxaAddress : public CBase58Data {
+class CCephalonAddress : public CBase58Data {
 public:
     bool Set(const CKeyID &id);
     bool Set(const CScriptID &id);
@@ -109,10 +109,10 @@ public:
     bool IsValid() const;
     bool IsValid(const CChainParams &params) const;
 
-    CNeoxaAddress() {}
-    CNeoxaAddress(const CTxDestination &dest) { Set(dest); }
-    CNeoxaAddress(const std::string& strAddress) { SetString(strAddress); }
-    CNeoxaAddress(const char* pszAddress) { SetString(pszAddress); }
+    CCephalonAddress() {}
+    CCephalonAddress(const CTxDestination &dest) { Set(dest); }
+    CCephalonAddress(const std::string& strAddress) { SetString(strAddress); }
+    CCephalonAddress(const char* pszAddress) { SetString(pszAddress); }
 
     CTxDestination Get() const;
     bool GetIndexKey(uint160& hashBytes, int& type) const;
@@ -121,7 +121,7 @@ public:
 /**
  * A base58-encoded secret key
  */
-class CNeoxaSecret : public CBase58Data
+class CCephalonSecret : public CBase58Data
 {
 public:
     void SetKey(const CKey& vchSecret);
@@ -130,11 +130,11 @@ public:
     bool SetString(const char* pszSecret);
     bool SetString(const std::string& strSecret);
 
-    CNeoxaSecret(const CKey& vchSecret) { SetKey(vchSecret); }
-    CNeoxaSecret() {}
+    CCephalonSecret(const CKey& vchSecret) { SetKey(vchSecret); }
+    CCephalonSecret() {}
 };
 
-template<typename K, int Size, CChainParams::Base58Type Type> class CNeoxaExtKeyBase : public CBase58Data
+template<typename K, int Size, CChainParams::Base58Type Type> class CCephalonExtKeyBase : public CBase58Data
 {
 public:
     void SetKey(const K &key) {
@@ -152,23 +152,23 @@ public:
         return ret;
     }
 
-    CNeoxaExtKeyBase(const K &key) {
+    CCephalonExtKeyBase(const K &key) {
         SetKey(key);
     }
 
-    CNeoxaExtKeyBase(const std::string& strBase58c) {
+    CCephalonExtKeyBase(const std::string& strBase58c) {
         SetString(strBase58c.c_str(), GetParams().Base58Prefix(Type).size());
     }
 
-    CNeoxaExtKeyBase() {}
+    CCephalonExtKeyBase() {}
 };
 
-typedef CNeoxaExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CNeoxaExtKey;
-typedef CNeoxaExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CNeoxaExtPubKey;
+typedef CCephalonExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CCephalonExtKey;
+typedef CCephalonExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CCephalonExtPubKey;
 
 std::string EncodeDestination(const CTxDestination& dest);
 CTxDestination DecodeDestination(const std::string& str);
 bool IsValidDestinationString(const std::string& str);
 bool IsValidDestinationString(const std::string& str, const CChainParams& params);
 
-#endif // NEOXA_BASE58_H
+#endif // CEPHALON_BASE58_H

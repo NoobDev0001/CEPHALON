@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Cephalon Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,7 @@ Test the rawtransaction RPCs for asset transactions.
 
 import math
 from io import BytesIO
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import CephalonTestFramework
 from test_framework.util import assert_equal, assert_raises_rpc_error, assert_is_hash_string, assert_does_not_contain_key, assert_contains_key, assert_contains_pair
 from test_framework.mininode import CTransaction, hex_str_to_bytes, bytes_to_hex_str, CScriptReissue, CScriptOwner, CScriptTransfer, CTxOut, CScriptIssue
 
@@ -57,7 +57,7 @@ def get_tx_issue_hex(self, node, asset_name, asset_quantity, asset_units=0):
 
 
 # noinspection PyTypeChecker
-class RawAssetTransactionsTest(NeoxaTestFramework):
+class RawAssetTransactionsTest(CephalonTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3

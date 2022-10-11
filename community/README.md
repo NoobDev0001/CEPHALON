@@ -1,2 +1,2 @@
-# Neoxa - Community Ideas
+# Cephalon - Community Ideas
 

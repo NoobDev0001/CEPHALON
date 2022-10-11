@@ -27,13 +27,13 @@ import signal  #Used for timeout
 JSON_ONLY_CHECK = False
 FILESIZE_THRESHOLD = 100000000
 
-#Set this to your neoxa-cli program
-cli = "neoxa-cli"
+#Set this to your cephalon-cli program
+cli = "cephalon-cli"
 
 #mode = "-testnet"
 mode = ""
 rpc_port = 8766
-#Set this information in your neoxa.conf file (in datadir, not testnet3)
+#Set this information in your cephalon.conf file (in datadir, not testnet3)
 rpc_user = 'rpcuser'
 rpc_pass = 'rpcpass555'
 
@@ -363,7 +363,7 @@ def monitor_zmq():
 	context = zmq.Context()
 	socket = context.socket(zmq.SUB)
 
-	print("Getting Neoxa msgs")
+	print("Getting Cephalon msgs")
 	socket.connect("tcp://localhost:28766")
 
 	#socket.setsockopt_string(zmq.SUBSCRIBE, u'hashtx')

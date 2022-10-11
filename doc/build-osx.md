@@ -43,17 +43,17 @@ from the root of the repository.
 
 **Note**: You only need Berkeley DB if the wallet is enabled (see [*Disable-wallet mode*](/doc/build-osx.md#disable-wallet-mode)).
 
-## Build Neoxa Core
+## Build Cephalon Core
 
-1. Clone the Neoxa Core source code:
+1. Clone the Cephalon Core source code:
     ```shell
-    git clone https://github.com/NeoxaChain/Neoxa
-    cd Neoxa
+    git clone https://github.com/CephalonChain/Cephalon
+    cd Cephalon
     ```
 
-2.  Build neoxa-core:
+2.  Build cephalon-core:
 
-    Configure and build the headless neoxa binaries as well as the GUI (if Qt is found).
+    Configure and build the headless cephalon binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
     ```shell
@@ -73,7 +73,7 @@ from the root of the repository.
     ```
 
 ## `disable-wallet` mode
-When the intention is to run only a P2P node without a wallet, Neoxa Core may be
+When the intention is to run only a P2P node without a wallet, Cephalon Core may be
 compiled in `disable-wallet` mode with:
 ```shell
 ./configure --disable-wallet
@@ -84,42 +84,42 @@ In this case there is no dependency on Berkeley DB 4.8 and SQLite.
 Mining is also possible in disable-wallet mode using the `getblocktemplate` RPC call.
 
 ## Running
-Neoxa Core is now available at `./src/neoxad`
+Cephalon Core is now available at `./src/cephalond`
 
 Before running, you may create an empty configuration file:
 ```shell
-mkdir -p "/Users/${USER}/Library/Application Support/Neoxa"
+mkdir -p "/Users/${USER}/Library/Application Support/Cephalon"
 
-touch "/Users/${USER}/Library/Application Support/Neoxa/neoxa.conf"
+touch "/Users/${USER}/Library/Application Support/Cephalon/cephalon.conf"
 
-chmod 600 "/Users/${USER}/Library/Application Support/Neoxa/neoxa.conf"
+chmod 600 "/Users/${USER}/Library/Application Support/Cephalon/cephalon.conf"
 ```
 
-The first time you run neoxad, it will start downloading the blockchain. This process could
+The first time you run cephalond, it will start downloading the blockchain. This process could
 take many hours, or even days on slower than average systems.
 
 You can monitor the download process by looking at the debug.log file:
 ```shell
-tail -f $HOME/Library/Application\ Support/Neoxa/debug.log
+tail -f $HOME/Library/Application\ Support/Cephalon/debug.log
 ```
 
 Other commands:
 -------
 
-    ./src/neoxad -daemon # Starts the neoxa daemon.
-    ./src/neoxa-cli --help # Outputs a list of command-line options.
-    ./src/neoxa-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/cephalond -daemon # Starts the cephalon daemon.
+    ./src/cephalon-cli --help # Outputs a list of command-line options.
+    ./src/cephalon-cli help # Outputs a list of RPC commands when the daemon is running.
 
 Using Qt Creator as IDE
 ------------------------
-You can use Qt Creator as an IDE, for neoxa development.
+You can use Qt Creator as an IDE, for cephalon development.
 Download and install the community edition of [Qt Creator](https://www.qt.io/download/).
 Uncheck everything except Qt Creator during the installation process.
 
 1. Make sure you installed everything through Homebrew mentioned above
 2. Do a proper ./configure --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "neoxa-qt" as project name, enter src/qt as location
+4. Enter "cephalon-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."

@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_WALLET_COINCONTROL_H
-#define NEOXA_WALLET_COINCONTROL_H
+#ifndef CEPHALON_WALLET_COINCONTROL_H
+#define CEPHALON_WALLET_COINCONTROL_H
 
 #include "policy/feerate.h"
 #include "policy/fees.h"
@@ -38,10 +38,10 @@ public:
     //! Fee estimation mode to control arguments to estimateSmartFee
     FeeEstimateMode m_fee_mode;
 
-    /** NEOXA START */
+    /** CEPHALON START */
     //! Name of the asset that is selected, used when sending assets with coincontrol
     std::string strAssetSelected;
-    /** NEOXA END */
+    /** CEPHALON END */
 
     CCoinControl()
     {
@@ -131,4 +131,4 @@ private:
     std::set<COutPoint> setAssetsSelected;
 };
 
-#endif // NEOXA_WALLET_COINCONTROL_H
+#endif // CEPHALON_WALLET_COINCONTROL_H

@@ -16,7 +16,7 @@
 
 # Copyright (c) 2013-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Cephalon Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -77,10 +77,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/neoxa
-pkgincludedir = $(includedir)/neoxa
-pkglibdir = $(libdir)/neoxa
-pkglibexecdir = $(libexecdir)/neoxa
+pkgdatadir = $(datadir)/cephalon
+pkgincludedir = $(includedir)/cephalon
+pkglibdir = $(libdir)/cephalon
+pkglibexecdir = $(libexecdir)/cephalon
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -111,15 +111,15 @@ am__aclocal_m4_deps = $(top_srcdir)/build-aux/m4/ax_boost_base.m4 \
 	$(top_srcdir)/build-aux/m4/ax_cxx_compile_stdcxx.m4 \
 	$(top_srcdir)/build-aux/m4/ax_gcc_func_attribute.m4 \
 	$(top_srcdir)/build-aux/m4/ax_pthread.m4 \
+	$(top_srcdir)/build-aux/m4/cephalon_find_bdb48.m4 \
+	$(top_srcdir)/build-aux/m4/cephalon_qt.m4 \
+	$(top_srcdir)/build-aux/m4/cephalon_subdir_to_include.m4 \
 	$(top_srcdir)/build-aux/m4/l_atomic.m4 \
 	$(top_srcdir)/build-aux/m4/libtool.m4 \
 	$(top_srcdir)/build-aux/m4/ltoptions.m4 \
 	$(top_srcdir)/build-aux/m4/ltsugar.m4 \
 	$(top_srcdir)/build-aux/m4/ltversion.m4 \
 	$(top_srcdir)/build-aux/m4/lt~obsolete.m4 \
-	$(top_srcdir)/build-aux/m4/neoxa_find_bdb48.m4 \
-	$(top_srcdir)/build-aux/m4/neoxa_qt.m4 \
-	$(top_srcdir)/build-aux/m4/neoxa_subdir_to_include.m4 \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
@@ -129,12 +129,12 @@ DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/src/config/neoxa-config.h
-CONFIG_CLEAN_FILES = libneoxaconsensus.pc share/setup.nsi \
+CONFIG_HEADER = $(top_builddir)/src/config/cephalon-config.h
+CONFIG_CLEAN_FILES = libcephalonconsensus.pc share/setup.nsi \
 	share/qt/Info.plist test/config.ini \
 	contrib/devtools/split-debug.sh doc/Doxyfile
 CONFIG_CLEAN_VPATH_FILES = contrib/filter-lcov.py \
-	test/functional/test_runner.py test/util/neoxa-util-test.py \
+	test/functional/test_runner.py test/util/cephalon-util-test.py \
 	src/crypto/md_helper.c
 SCRIPTS = $(dist_noinst_SCRIPTS)
 AM_V_P = $(am__v_P_$(V))
@@ -220,7 +220,7 @@ am__define_uniq_tagged_files = \
   done | $(am__uniquify_input)`
 DIST_SUBDIRS = src doc/man
 am__DIST_COMMON = $(srcdir)/Makefile.in \
-	$(srcdir)/libneoxaconsensus.pc.in \
+	$(srcdir)/libcephalonconsensus.pc.in \
 	$(top_srcdir)/build-aux/compile \
 	$(top_srcdir)/build-aux/config.guess \
 	$(top_srcdir)/build-aux/config.sub \
@@ -232,14 +232,14 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/doc/Doxyfile.in \
 	$(top_srcdir)/share/qt/Info.plist.in \
 	$(top_srcdir)/share/setup.nsi.in \
-	$(top_srcdir)/src/config/neoxa-config.h.in \
+	$(top_srcdir)/src/config/cephalon-config.h.in \
 	$(top_srcdir)/src/crypto/md_helper.c \
 	$(top_srcdir)/test/config.ini.in \
 	$(top_srcdir)/test/functional/test_runner.py \
-	$(top_srcdir)/test/util/neoxa-util-test.py COPYING INSTALL.md \
-	README.md build-aux/compile build-aux/config.guess \
-	build-aux/config.sub build-aux/install-sh build-aux/ltmain.sh \
-	build-aux/missing
+	$(top_srcdir)/test/util/cephalon-util-test.py COPYING \
+	INSTALL.md README.md build-aux/compile build-aux/config.guess \
+	build-aux/config.sub build-aux/depcomp build-aux/install-sh \
+	build-aux/ltmain.sh build-aux/missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -309,6 +309,9 @@ BREW =
 CC = gcc
 CCACHE = 
 CCDEPMODE = depmode=gcc3
+CEPHALON_DAEMON_NAME = cephalond
+CEPHALON_GUI_NAME = cephalon-qt
+CEPHALON_TX_NAME = cephalon-tx
 CFLAGS = -g -O2
 CLIENT_VERSION_BUILD = 2
 CLIENT_VERSION_IS_RELEASE = true
@@ -317,8 +320,8 @@ CLIENT_VERSION_MINOR = 4
 CLIENT_VERSION_REVISION = 4
 COMPAT_LDFLAGS = 
 COPYRIGHT_HOLDERS = The %s developers
-COPYRIGHT_HOLDERS_FINAL = The Neoxa Core developers
-COPYRIGHT_HOLDERS_SUBSTITUTION = Neoxa Core
+COPYRIGHT_HOLDERS_FINAL = The Cephalon Core developers
+COPYRIGHT_HOLDERS_SUBSTITUTION = Cephalon Core
 COPYRIGHT_YEAR = 2021
 CPP = gcc -E
 CPPFILT = /usr/bin/c++filt
@@ -395,9 +398,6 @@ MINIUPNPC_LIBS =
 MKDIR_P = /usr/bin/mkdir -p
 MOC = /usr/lib/x86_64-linux-gnu/qt5/bin/moc
 MOC_DEFS = -DHAVE_CONFIG_H -I$(srcdir)
-NEOXA_DAEMON_NAME = neoxad
-NEOXA_GUI_NAME = neoxa-qt
-NEOXA_TX_NAME = neoxa-tx
 NM = /usr/bin/nm -B
 NMEDIT = 
 OBJCOPY = /usr/bin/objcopy
@@ -408,12 +408,12 @@ OBJDUMP = objdump
 OBJEXT = o
 OTOOL = 
 OTOOL64 = 
-PACKAGE = neoxa
-PACKAGE_BUGREPORT = https://github.com/NeoxaChain/Neoxa/issues
-PACKAGE_NAME = Neoxa Core
-PACKAGE_STRING = Neoxa Core 4.4.4
-PACKAGE_TARNAME = neoxa
-PACKAGE_URL = https://neoxa.net
+PACKAGE = cephalon
+PACKAGE_BUGREPORT = https://github.com/CephalonChain/Cephalon/issues
+PACKAGE_NAME = Cephalon Core
+PACKAGE_STRING = Cephalon Core 4.4.4
+PACKAGE_TARNAME = cephalon
+PACKAGE_URL = https://cephalon.net
 PACKAGE_VERSION = 4.4.4
 PATH_SEPARATOR = :
 PIC_FLAGS = -fPIC
@@ -503,6 +503,7 @@ build_cpu = x86_64
 build_os = linux-gnu
 build_vendor = pc
 builddir = .
+cephalon_cli_NAME = cephalon-cli
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
@@ -523,7 +524,6 @@ localedir = ${datarootdir}/locale
 localstatedir = ${prefix}/var
 mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
-neoxa_cli_NAME = neoxa-cli
 oldincludedir = /usr/include
 pdfdir = ${docdir}
 prefix = /usr/local
@@ -542,15 +542,15 @@ top_srcdir = .
 ACLOCAL_AMFLAGS = -I build-aux/m4
 SUBDIRS = src $(am__append_1)
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libneoxaconsensus.pc
-NEOXAD_BIN = $(top_builddir)/src/$(NEOXA_DAEMON_NAME)$(EXEEXT)
-NEOXA_QT_BIN = $(top_builddir)/src/qt/$(NEOXA_GUI_NAME)$(EXEEXT)
-neoxa_cli_BIN = $(top_builddir)/src/$(neoxa_cli_NAME)$(EXEEXT)
-NEOXA_WIN_INSTALLER = $(PACKAGE)-$(PACKAGE_VERSION)-win$(WINDOWS_BITS)-setup$(EXEEXT)
-neoxa_cli_INSTALL = $(top_builddir)/contrib/install_cli.sh
+pkgconfig_DATA = libcephalonconsensus.pc
+CEPHALOND_BIN = $(top_builddir)/src/$(CEPHALON_DAEMON_NAME)$(EXEEXT)
+CEPHALON_QT_BIN = $(top_builddir)/src/qt/$(CEPHALON_GUI_NAME)$(EXEEXT)
+cephalon_cli_BIN = $(top_builddir)/src/$(cephalon_cli_NAME)$(EXEEXT)
+CEPHALON_WIN_INSTALLER = $(PACKAGE)-$(PACKAGE_VERSION)-win$(WINDOWS_BITS)-setup$(EXEEXT)
+cephalon_cli_INSTALL = $(top_builddir)/contrib/install_cli.sh
 empty := 
 space := $(empty) $(empty)
-OSX_APP = Neoxa-Qt.app
+OSX_APP = Cephalon-Qt.app
 OSX_VOLNAME = $(subst $(space),-,$(PACKAGE_NAME))
 OSX_DMG = $(OSX_VOLNAME).dmg
 OSX_BACKGROUND_SVG = background.svg
@@ -559,13 +559,13 @@ OSX_BACKGROUND_IMAGE_DPIS = 36 72
 OSX_DSSTORE_GEN = $(top_srcdir)/contrib/macdeploy/custom_dsstore.py
 OSX_DEPLOY_SCRIPT = $(top_srcdir)/contrib/macdeploy/macdeployqtplus
 OSX_FANCY_PLIST = $(top_srcdir)/contrib/macdeploy/fancy.plist
-OSX_INSTALLER_ICONS = $(top_srcdir)/src/qt/res/icons/neoxa.icns
+OSX_INSTALLER_ICONS = $(top_srcdir)/src/qt/res/icons/cephalon.icns
 OSX_PLIST = $(top_builddir)/share/qt/Info.plist #not installed
 OSX_QT_TRANSLATIONS = da,de,es,hu,ru,uk,zh_CN,zh_TW
 DIST_DOCS = $(wildcard doc/*.md) $(wildcard doc/release-notes/*.md)
-DIST_CONTRIB = $(top_srcdir)/contrib/neoxa-cli.bash-completion \
-	       $(top_srcdir)/contrib/neoxa-tx.bash-completion \
-	       $(top_srcdir)/contrib/neoxad.bash-completion \
+DIST_CONTRIB = $(top_srcdir)/contrib/cephalon-cli.bash-completion \
+	       $(top_srcdir)/contrib/cephalon-tx.bash-completion \
+	       $(top_srcdir)/contrib/cephalond.bash-completion \
 	       $(top_srcdir)/contrib/init \
 	       $(top_srcdir)/contrib/rpm
 
@@ -576,7 +576,7 @@ DIST_SHARE = \
 BIN_CHECKS = $(top_srcdir)/contrib/devtools/symbol-check.py \
            $(top_srcdir)/contrib/devtools/security-check.py
 
-WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/neoxa.ico \
+WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/cephalon.ico \
   $(top_srcdir)/share/pixmaps/nsis-header.bmp \
   $(top_srcdir)/share/pixmaps/nsis-wizard.bmp \
   $(top_srcdir)/doc/README_windows.txt
@@ -588,14 +588,14 @@ OSX_PACKAGING = $(OSX_DEPLOY_SCRIPT) $(OSX_FANCY_PLIST) $(OSX_INSTALLER_ICONS) \
   $(top_srcdir)/contrib/macdeploy/detached-sig-create.sh
 
 COVERAGE_INFO = baseline.info \
-  test_neoxa_filtered.info total_coverage.info \
+  test_cephalon_filtered.info total_coverage.info \
   baseline_filtered.info functional_test.info functional_test_filtered.info \
-  test_neoxa_coverage.info test_neoxa.info
+  test_cephalon_coverage.info test_cephalon.info
 
 OSX_APP_BUILT = $(OSX_APP)/Contents/PkgInfo $(OSX_APP)/Contents/Resources/empty.lproj \
-  $(OSX_APP)/Contents/Resources/neoxa.icns $(OSX_APP)/Contents/Info.plist \
-  $(OSX_APP)/Contents/MacOS/Neoxa-Qt $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings \
-  $(OSX_APP)/Contents/MacOS/neoxad $(OSX_APP)/Contents/MacOS/neoxa-cli $(OSX_APP)/Contents/MacOS/install_cli.sh
+  $(OSX_APP)/Contents/Resources/cephalon.icns $(OSX_APP)/Contents/Info.plist \
+  $(OSX_APP)/Contents/MacOS/Cephalon-Qt $(OSX_APP)/Contents/Resources/Base.lproj/InfoPlist.strings \
+  $(OSX_APP)/Contents/MacOS/cephalond $(OSX_APP)/Contents/MacOS/cephalon-cli $(OSX_APP)/Contents/MacOS/install_cli.sh
 
 APP_DIST_DIR = $(top_builddir)/dist
 APP_DIST_EXTRAS = $(APP_DIST_DIR)/.background/$(OSX_BACKGROUND_IMAGE) $(APP_DIST_DIR)/.DS_Store $(APP_DIST_DIR)/Applications
@@ -605,8 +605,8 @@ dist_noinst_SCRIPTS = autogen.sh
 EXTRA_DIST = $(DIST_SHARE) test/functional/test_runner.py \
 	test/functional $(DIST_CONTRIB) $(DIST_DOCS) \
 	$(WINDOWS_PACKAGING) $(OSX_PACKAGING) $(BIN_CHECKS) \
-	test/util/neoxa-util-test.py \
-	test/util/data/neoxa-util-test.json \
+	test/util/cephalon-util-test.py \
+	test/util/data/cephalon-util-test.json \
 	test/util/data/blanktxv1.hex test/util/data/blanktxv1.json \
 	test/util/data/blanktxv2.hex test/util/data/blanktxv2.json \
 	test/util/data/tt-delin1-out.hex \
@@ -651,7 +651,7 @@ EXTRA_DIST = $(DIST_SHARE) test/functional/test_runner.py \
 	test/util/data/txcreatesignv1.hex \
 	test/util/data/txcreatesignv1.json \
 	test/util/data/txcreatesignv2.hex
-CLEANFILES = $(OSX_DMG) $(NEOXA_WIN_INSTALLER)
+CLEANFILES = $(OSX_DMG) $(CEPHALON_WIN_INSTALLER)
 DISTCHECK_CONFIGURE_FLAGS = --enable-man
 all: all-recursive
 
@@ -690,21 +690,21 @@ $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 
-src/config/neoxa-config.h: src/config/stamp-h1
+src/config/cephalon-config.h: src/config/stamp-h1
 	@test -f $@ || rm -f src/config/stamp-h1
 	@test -f $@ || $(MAKE) $(AM_MAKEFLAGS) src/config/stamp-h1
 
-src/config/stamp-h1: $(top_srcdir)/src/config/neoxa-config.h.in $(top_builddir)/config.status
+src/config/stamp-h1: $(top_srcdir)/src/config/cephalon-config.h.in $(top_builddir)/config.status
 	@rm -f src/config/stamp-h1
-	cd $(top_builddir) && $(SHELL) ./config.status src/config/neoxa-config.h
-$(top_srcdir)/src/config/neoxa-config.h.in:  $(am__configure_deps) 
+	cd $(top_builddir) && $(SHELL) ./config.status src/config/cephalon-config.h
+$(top_srcdir)/src/config/cephalon-config.h.in:  $(am__configure_deps) 
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
 	rm -f src/config/stamp-h1
 	touch $@
 
 distclean-hdr:
-	-rm -f src/config/neoxa-config.h src/config/stamp-h1
-libneoxaconsensus.pc: $(top_builddir)/config.status $(srcdir)/libneoxaconsensus.pc.in
+	-rm -f src/config/cephalon-config.h src/config/stamp-h1
+libcephalonconsensus.pc: $(top_builddir)/config.status $(srcdir)/libcephalonconsensus.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 share/setup.nsi: $(top_builddir)/config.status $(top_srcdir)/share/setup.nsi.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
@@ -1191,11 +1191,11 @@ export PYTHONPATH
 dist-hook:
 	-$(GIT) archive --format=tar HEAD -- src/clientversion.cpp | $(AMTAR) -C $(top_distdir) -xf -
 
-$(NEOXA_WIN_INSTALLER): all-recursive
+$(CEPHALON_WIN_INSTALLER): all-recursive
 	$(MKDIR_P) $(top_builddir)/release
-	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(NEOXAD_BIN) $(top_builddir)/release
-	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(NEOXA_QT_BIN) $(top_builddir)/release
-	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(neoxa_cli_BIN) $(top_builddir)/release
+	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(CEPHALOND_BIN) $(top_builddir)/release
+	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(CEPHALON_QT_BIN) $(top_builddir)/release
+	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(cephalon_cli_BIN) $(top_builddir)/release
 	@test -f $(MAKENSIS) && $(MAKENSIS) -V2 $(top_builddir)/share/setup.nsi || \
 	  echo error: could not build $@
 	@echo built $@
@@ -1212,23 +1212,23 @@ $(OSX_APP)/Contents/Info.plist: $(OSX_PLIST)
 	$(MKDIR_P) $(@D)
 	$(INSTALL_DATA) $< $@
 
-$(OSX_APP)/Contents/Resources/neoxa.icns: $(OSX_INSTALLER_ICONS)
+$(OSX_APP)/Contents/Resources/cephalon.icns: $(OSX_INSTALLER_ICONS)
 	$(MKDIR_P) $(@D)
 	$(INSTALL_DATA) $< $@
 
-$(OSX_APP)/Contents/MacOS/install_cli.sh: $(neoxa_cli_INSTALL)
+$(OSX_APP)/Contents/MacOS/install_cli.sh: $(cephalon_cli_INSTALL)
 	$(MKDIR_P) $(@D)
 	$(INSTALL_DATA) $< $@
 
-$(OSX_APP)/Contents/MacOS/Neoxa-Qt: $(NEOXA_QT_BIN)
+$(OSX_APP)/Contents/MacOS/Cephalon-Qt: $(CEPHALON_QT_BIN)
 	$(MKDIR_P) $(@D)
 	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM)  $< $@
 
-$(OSX_APP)/Contents/MacOS/neoxad: $(NEOXAD_BIN)
+$(OSX_APP)/Contents/MacOS/cephalond: $(CEPHALOND_BIN)
 	$(MKDIR_P) $(@D)
 	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM)  $< $@
 
-$(OSX_APP)/Contents/MacOS/neoxa-cli: $(neoxa_cli_BIN)
+$(OSX_APP)/Contents/MacOS/cephalon-cli: $(cephalon_cli_BIN)
 	$(MKDIR_P) $(@D)
 	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM)  $< $@
 
@@ -1255,7 +1255,7 @@ $(APP_DIST_DIR)/Applications:
 	@rm -f $@
 	@cd $(@D); $(LN_S) /Applications $(@F)
 
-$(APP_DIST_EXTRAS): $(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/Neoxa-Qt
+$(APP_DIST_EXTRAS): $(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/Cephalon-Qt
 
 $(OSX_DMG): $(APP_DIST_EXTRAS)
 	$(GENISOIMAGE) -no-cache-inodes -D -l -probe -V "$(OSX_VOLNAME)" -no-pad -r -dir-mode 0755 -apple -o $@ dist
@@ -1269,22 +1269,22 @@ $(APP_DIST_DIR)/.background/$(OSX_BACKGROUND_IMAGE): $(OSX_BACKGROUND_IMAGE_DPIF
 $(APP_DIST_DIR)/.DS_Store: $(OSX_DSSTORE_GEN)
 	$(PYTHON) $< "$@" "$(OSX_VOLNAME)"
 
-$(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/Neoxa-Qt: $(OSX_APP_BUILT) $(OSX_PACKAGING)
+$(APP_DIST_DIR)/$(OSX_APP)/Contents/MacOS/Cephalon-Qt: $(OSX_APP_BUILT) $(OSX_PACKAGING)
 	INSTALLNAMETOOL=$(INSTALLNAMETOOL)  OTOOL=$(OTOOL) STRIP=$(STRIP) $(PYTHON) $(OSX_DEPLOY_SCRIPT) $(OSX_APP) -translations-dir=$(QT_TRANSLATION_DIR) -add-qt-tr $(OSX_QT_TRANSLATIONS) -verbose 2
 
 deploydir: $(APP_DIST_EXTRAS)
 
 #appbundle: $(OSX_APP_BUILT)
 #deploy: $(OSX_DMG)
-#deploy: $(NEOXA_WIN_INSTALLER)
+#deploy: $(CEPHALON_WIN_INSTALLER)
 
-$(NEOXA_QT_BIN): FORCE
+$(CEPHALON_QT_BIN): FORCE
 	$(MAKE) -C src qt/$(@F)
 
-$(NEOXAD_BIN): FORCE
+$(CEPHALOND_BIN): FORCE
 	$(MAKE) -C src $(@F)
 
-$(neoxa_cli_BIN): FORCE
+$(cephalon_cli_BIN): FORCE
 	$(MAKE) -C src $(@F)
 
 #baseline.info:
@@ -1294,16 +1294,16 @@ $(neoxa_cli_BIN): FORCE
 #	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 #	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-#test_neoxa.info: baseline_filtered.info
+#test_cephalon.info: baseline_filtered.info
 #	$(MAKE) -C src/ check
-#	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src -t test_neoxa -o $@
+#	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src -t test_cephalon -o $@
 #	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
 
-#test_neoxa_filtered.info: test_neoxa.info
+#test_cephalon_filtered.info: test_cephalon.info
 #	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 #	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-#functional_test.info: test_neoxa_filtered.info
+#functional_test.info: test_cephalon_filtered.info
 #	-@TIMEOUT=15 test/functional/test_runner.py $(EXTENDED_FUNCTIONAL_TESTS)
 #	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src --t functional-tests -o $@
 #	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
@@ -1312,13 +1312,13 @@ $(neoxa_cli_BIN): FORCE
 #	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
 #	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-#test_neoxa_coverage.info: baseline_filtered.info test_neoxa_filtered.info
-#	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_neoxa_filtered.info -o $@
+#test_cephalon_coverage.info: baseline_filtered.info test_cephalon_filtered.info
+#	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_cephalon_filtered.info -o $@
 
-#total_coverage.info: test_neoxa_filtered.info functional_test_filtered.info
-#	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_neoxa_filtered.info -a functional_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
+#total_coverage.info: test_cephalon_filtered.info functional_test_filtered.info
+#	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_cephalon_filtered.info -a functional_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
 
-#test_neoxa.coverage/.dirstamp:  test_neoxa_coverage.info
+#test_cephalon.coverage/.dirstamp:  test_cephalon_coverage.info
 #	$(GENHTML) -s $(LCOV_OPTS) $< -o $(@D)
 #	@touch $@
 
@@ -1326,7 +1326,7 @@ $(neoxa_cli_BIN): FORCE
 #	$(GENHTML) -s $(LCOV_OPTS) $< -o $(@D)
 #	@touch $@
 
-#cov: test_neoxa.coverage/.dirstamp total.coverage/.dirstamp
+#cov: test_cephalon.coverage/.dirstamp total.coverage/.dirstamp
 
 .INTERMEDIATE: $(COVERAGE_INFO)
 
@@ -1343,7 +1343,7 @@ clean-docs:
 	rm -rf doc/doxygen
 
 clean-local: clean-docs
-	rm -rf coverage_percent.txt test_neoxa.coverage/ total.coverage/ test/tmp/ cache/ $(OSX_APP)
+	rm -rf coverage_percent.txt test_cephalon.coverage/ total.coverage/ test/tmp/ cache/ $(OSX_APP)
 	rm -rf test/functional/__pycache__
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

@@ -1,13 +1,13 @@
 // Copyright (c) 2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_WALLET_TEST_FIXTURE_H
-#define NEOXA_WALLET_TEST_FIXTURE_H
+#ifndef CEPHALON_WALLET_TEST_FIXTURE_H
+#define CEPHALON_WALLET_TEST_FIXTURE_H
 
-#include "test/test_neoxa.h"
+#include "test/test_cephalon.h"
 
 /** Testing setup and teardown for wallet.
  */

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -49,10 +49,10 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             const CTxOut& txout = wtx.tx->vout[i];
             isminetype mine = wallet->IsMine(txout);
 
-            /** NEOXA START */
+            /** CEPHALON START */
             if (txout.scriptPubKey.IsAssetScript() || txout.scriptPubKey.IsNullAssetTxDataScript() || txout.scriptPubKey.IsNullGlobalRestrictionAssetTxDataScript())
                 continue;
-            /** NEOXA START */
+            /** CEPHALON START */
 
             if(mine)
             {
@@ -63,7 +63,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address))
                 {
-                    // Received by neoxa Address
+                    // Received by cephalon Address
                     sub.type = TransactionRecord::RecvWithAddress;
                     sub.address = EncodeDestination(address);
                 }
@@ -97,10 +97,10 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
         isminetype fAllToMe = ISMINE_SPENDABLE;
         for (const CTxOut& txout : wtx.tx->vout)
         {
-            /** NEOXA START */
+            /** CEPHALON START */
             if (txout.scriptPubKey.IsAssetScript() || txout.scriptPubKey.IsNullAssetTxDataScript() || txout.scriptPubKey.IsNullGlobalRestrictionAssetTxDataScript())
                 continue;
-            /** NEOXA START */
+            /** CEPHALON START */
 
             isminetype mine = wallet->IsMine(txout);
             if(mine & ISMINE_WATCH_ONLY) involvesWatchAddress = true;
@@ -127,10 +127,10 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             {
                 const CTxOut& txout = wtx.tx->vout[nOut];
 
-                /** NEOXA START */
+                /** CEPHALON START */
                 if (txout.scriptPubKey.IsAssetScript())
                     continue;
-                /** NEOXA START */
+                /** CEPHALON START */
 
                 TransactionRecord sub(hash, nTime);
                 sub.idx = nOut;
@@ -146,7 +146,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 CTxDestination address;
                 if (ExtractDestination(txout.scriptPubKey, address))
                 {
-                    // Sent to neoxa Address
+                    // Sent to cephalon Address
                     sub.type = TransactionRecord::SendToAddress;
                     sub.address = EncodeDestination(address);
                 }
@@ -176,7 +176,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             //
 
 
-            /** NEOXA START */
+            /** CEPHALON START */
             // We will only show mixed debit transactions that are nNet < 0 or if they are nNet == 0 and
             // they do not contain assets. This is so the list of transaction doesn't add 0 amount transactions to the
             // list.
@@ -196,12 +196,12 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 parts.append(TransactionRecord(hash, nTime, TransactionRecord::Other, "", nNet, 0));
                 parts.last().involvesWatchAddress = involvesWatchAddress;
             }
-            /** NEOXA START */
+            /** CEPHALON START */
         }
     }
 
 
-    /** NEOXA START */
+    /** CEPHALON START */
     if (AreAssetsDeployed()) {
         CAmount nFee;
         std::string strSentAccount;
@@ -296,7 +296,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             }
         }
     }
-    /** NEOXA END */
+    /** CEPHALON END */
 
     return parts;
 }

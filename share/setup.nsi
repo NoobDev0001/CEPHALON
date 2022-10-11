@@ -1,4 +1,4 @@
-Name "Neoxa Core (-bit)"
+Name "Cephalon Core (-bit)"
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
@@ -6,11 +6,11 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION 4.4.4
-!define COMPANY "Neoxa Core project"
-!define URL https://neoxa.net
+!define COMPANY "Cephalon Core project"
+!define URL https://cephalon.net
 
 # MUI Symbol Definitions
-!define MUI_ICON "/home/dellacsep1/Desktop/oct/share/pixmaps/neoxa.ico"
+!define MUI_ICON "/home/dellacsep1/Desktop/oct/share/pixmaps/cephalon.ico"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "/home/dellacsep1/Desktop/oct/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
@@ -19,8 +19,8 @@ SetCompressor /SOLID lzma
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER "Neoxa Core"
-!define MUI_FINISHPAGE_RUN $INSTDIR\neoxa-qt
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "Cephalon Core"
+!define MUI_FINISHPAGE_RUN $INSTDIR\cephalon-qt
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP "/home/dellacsep1/Desktop/oct/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
@@ -48,18 +48,18 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /home/dellacsep1/Desktop/oct/neoxa-${VERSION}-win-setup.exe
+OutFile /home/dellacsep1/Desktop/oct/cephalon-${VERSION}-win-setup.exe
 !if "" == "64"
-InstallDir $PROGRAMFILES64\Neoxa
+InstallDir $PROGRAMFILES64\Cephalon
 !else
-InstallDir $PROGRAMFILES\Neoxa
+InstallDir $PROGRAMFILES\Cephalon
 !endif
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
 VIProductVersion ${VERSION}.2
-VIAddVersionKey ProductName "Neoxa Core"
+VIAddVersionKey ProductName "Cephalon Core"
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
@@ -73,12 +73,12 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /home/dellacsep1/Desktop/oct/release/neoxa-qt
+    File /home/dellacsep1/Desktop/oct/release/cephalon-qt
     File /oname=COPYING.txt /home/dellacsep1/Desktop/oct/COPYING
     File /oname=readme.txt /home/dellacsep1/Desktop/oct/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /home/dellacsep1/Desktop/oct/release/neoxad
-    File /home/dellacsep1/Desktop/oct/release/neoxa-cli
+    File /home/dellacsep1/Desktop/oct/release/cephalond
+    File /home/dellacsep1/Desktop/oct/release/cephalon-cli
     SetOutPath $INSTDIR\doc
     File /r /home/dellacsep1/Desktop/oct/doc\*.*
     SetOutPath $INSTDIR
@@ -91,8 +91,8 @@ Section -post SEC0001
     WriteUninstaller $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory $SMPROGRAMS\$StartMenuGroup
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\neoxa-qt
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Neoxa Core (testnet, -bit).lnk" "$INSTDIR\neoxa-qt" "-testnet" "$INSTDIR\neoxa-qt" 1
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\cephalon-qt
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Cephalon Core (testnet, -bit).lnk" "$INSTDIR\cephalon-qt" "-testnet" "$INSTDIR\cephalon-qt" 1
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
@@ -103,10 +103,10 @@ Section -post SEC0001
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" UninstallString $INSTDIR\uninstall.exe
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
-    WriteRegStr HKCR "neoxa" "URL Protocol" ""
-    WriteRegStr HKCR "neoxa" "" "URL:Neoxa"
-    WriteRegStr HKCR "neoxa\DefaultIcon" "" $INSTDIR\neoxa-qt
-    WriteRegStr HKCR "neoxa\shell\open\command" "" '"$INSTDIR\neoxa-qt" "%1"'
+    WriteRegStr HKCR "cephalon" "URL Protocol" ""
+    WriteRegStr HKCR "cephalon" "" "URL:Cephalon"
+    WriteRegStr HKCR "cephalon\DefaultIcon" "" $INSTDIR\cephalon-qt
+    WriteRegStr HKCR "cephalon\shell\open\command" "" '"$INSTDIR\cephalon-qt" "%1"'
 SectionEnd
 
 # Macro for selecting uninstaller sections
@@ -124,7 +124,7 @@ done${UNSECTION_ID}:
 
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-    Delete /REBOOTOK $INSTDIR\neoxa-qt
+    Delete /REBOOTOK $INSTDIR\cephalon-qt
     Delete /REBOOTOK $INSTDIR\COPYING.txt
     Delete /REBOOTOK $INSTDIR\readme.txt
     RMDir /r /REBOOTOK $INSTDIR\daemon
@@ -136,8 +136,8 @@ Section -un.post UNSEC0001
     DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk"
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Neoxa Core (testnet, -bit).lnk"
-    Delete /REBOOTOK "$SMSTARTUP\Neoxa.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Cephalon Core (testnet, -bit).lnk"
+    Delete /REBOOTOK "$SMSTARTUP\Cephalon.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log
     Delete /REBOOTOK $INSTDIR\db.log
@@ -145,7 +145,7 @@ Section -un.post UNSEC0001
     DeleteRegValue HKCU "${REGKEY}" Path
     DeleteRegKey /IfEmpty HKCU "${REGKEY}\Components"
     DeleteRegKey /IfEmpty HKCU "${REGKEY}"
-    DeleteRegKey HKCR "neoxa"
+    DeleteRegKey HKCR "cephalon"
     RmDir /REBOOTOK $SMPROGRAMS\$StartMenuGroup
     RmDir /REBOOTOK $INSTDIR
     Push $R0

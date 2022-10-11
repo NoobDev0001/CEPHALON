@@ -77,7 +77,7 @@ static const std::regex QUALIFIER_INDICATOR("^[#][A-Z0-9._]{3,}$"); // Starts wi
 static const std::regex SUB_QUALIFIER_INDICATOR("^#[A-Z0-9._]+\\/#[A-Z0-9._]+$"); // Starts with #
 static const std::regex RESTRICTED_INDICATOR("^[\\$][A-Z0-9._]{3,}$"); // Starts with $
 
-static const std::regex NEOXA_NAMES("^RVN$|^RAVEN$|^RAVENCOIN$|^#RVN$|^#RAVEN$|^#RAVENCOIN$|^NEOX$|^NEOX$|^NEOXA$|^NEOXACOIN$|^#NEOX$|^#NEOXA$|^#NEOXACOIN$");
+static const std::regex CEPHALON_NAMES("^RVN$|^RAVEN$|^RAVENCOIN$|^#RVN$|^#RAVEN$|^#RAVENCOIN$|^NEOX$|^NEOX$|^CEPHALON$|^CEPHALONCOIN$|^#NEOX$|^#CEPHALON$|^#CEPHALONCOIN$");
 
 bool IsRootNameValid(const std::string& name)
 {
@@ -85,7 +85,7 @@ bool IsRootNameValid(const std::string& name)
         && !std::regex_match(name, DOUBLE_PUNCTUATION)
         && !std::regex_match(name, LEADING_PUNCTUATION)
         && !std::regex_match(name, TRAILING_PUNCTUATION)
-        && !std::regex_match(name, NEOXA_NAMES);
+        && !std::regex_match(name, CEPHALON_NAMES);
 }
 
 bool IsQualifierNameValid(const std::string& name)
@@ -94,7 +94,7 @@ bool IsQualifierNameValid(const std::string& name)
            && !std::regex_match(name, DOUBLE_PUNCTUATION)
            && !std::regex_match(name, QUALIFIER_LEADING_PUNCTUATION)
            && !std::regex_match(name, TRAILING_PUNCTUATION)
-           && !std::regex_match(name, NEOXA_NAMES);
+           && !std::regex_match(name, CEPHALON_NAMES);
 }
 
 bool IsRestrictedNameValid(const std::string& name)
@@ -103,7 +103,7 @@ bool IsRestrictedNameValid(const std::string& name)
            && !std::regex_match(name, DOUBLE_PUNCTUATION)
            && !std::regex_match(name, LEADING_PUNCTUATION)
            && !std::regex_match(name, TRAILING_PUNCTUATION)
-           && !std::regex_match(name, NEOXA_NAMES);
+           && !std::regex_match(name, CEPHALON_NAMES);
 }
 
 bool IsSubQualifierNameValid(const std::string& name)
@@ -1046,7 +1046,7 @@ bool CTransaction::VerifyNewUniqueAsset(std::string& strError) const
 
 //! To be called on CTransactions where IsNewAsset returns true
 bool CTransaction::VerifyNewAsset(std::string& strError) const {
-    // Issuing an Asset must contain at least 3 CTxOut( Neoxa Burn Tx, Any Number of other Outputs ..., Owner Asset Tx, New Asset Tx)
+    // Issuing an Asset must contain at least 3 CTxOut( Cephalon Burn Tx, Any Number of other Outputs ..., Owner Asset Tx, New Asset Tx)
     if (vout.size() < 3) {
         strError = "bad-txns-issue-vout-size-to-small";
         return false;
@@ -1155,7 +1155,7 @@ bool CTransaction::IsNewMsgChannelAsset() const
 //! To be called on CTransactions where IsNewAsset returns true
 bool CTransaction::VerifyNewMsgChannelAsset(std::string &strError) const
 {
-    // Issuing an Asset must contain at least 3 CTxOut( Neoxa Burn Tx, Any Number of other Outputs ..., Owner Asset Tx, New Asset Tx)
+    // Issuing an Asset must contain at least 3 CTxOut( Cephalon Burn Tx, Any Number of other Outputs ..., Owner Asset Tx, New Asset Tx)
     if (vout.size() < 3) {
         strError  = "bad-txns-issue-msgchannel-vout-size-to-small";
         return false;
@@ -1242,7 +1242,7 @@ bool CTransaction::IsNewQualifierAsset() const
 //! To be called on CTransactions where IsNewQualifierAsset returns true
 bool CTransaction::VerifyNewQualfierAsset(std::string &strError) const
 {
-    // Issuing an Asset must contain at least 2 CTxOut( Neoxa Burn Tx, New Asset Tx, Any Number of other Outputs...)
+    // Issuing an Asset must contain at least 2 CTxOut( Cephalon Burn Tx, New Asset Tx, Any Number of other Outputs...)
     if (vout.size() < 2) {
         strError  = "bad-txns-issue-qualifier-vout-size-to-small";
         return false;
@@ -1330,7 +1330,7 @@ bool CTransaction::IsNewRestrictedAsset() const
 
 //! To be called on CTransactions where IsNewRestrictedAsset returns true
 bool CTransaction::VerifyNewRestrictedAsset(std::string& strError) const {
-    // Issuing a restricted asset must cointain at least 4 CTxOut(Neoxa Burn Tx, Asset Creation, Root Owner Token Transfer, and CNullAssetTxVerifierString)
+    // Issuing a restricted asset must cointain at least 4 CTxOut(Cephalon Burn Tx, Asset Creation, Root Owner Token Transfer, and CNullAssetTxVerifierString)
     if (vout.size() < 4) {
         strError = "bad-txns-issue-restricted-vout-size-to-small";
         return false;
@@ -1459,7 +1459,7 @@ bool CTransaction::IsReissueAsset() const
 //! To be called on CTransactions where IsReissueAsset returns true
 bool CTransaction::VerifyReissueAsset(std::string& strError) const
 {
-    // Reissuing an Asset must contain at least 3 CTxOut ( Neoxa Burn Tx, Any Number of other Outputs ..., Reissue Asset Tx, Owner Asset Change Tx)
+    // Reissuing an Asset must contain at least 3 CTxOut ( Cephalon Burn Tx, Any Number of other Outputs ..., Reissue Asset Tx, Owner Asset Change Tx)
     if (vout.size() < 3) {
         strError  = "bad-txns-vout-size-to-small";
         return false;
@@ -3876,7 +3876,7 @@ bool CreateAssetTransaction(CWallet* pwallet, CCoinControl& coinControl, const s
     if (!change_address.empty()) {
         CTxDestination destination = DecodeDestination(change_address);
         if (!IsValidDestination(destination)) {
-            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + change_address);
+            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Cephalon address: ") + change_address);
             return false;
         }
     } else {
@@ -4042,7 +4042,7 @@ bool CreateReissueAssetTransaction(CWallet* pwallet, CCoinControl& coinControl, 
 
     // Check that validitity of the address
     if (!IsValidDestinationString(address)) {
-        error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + address);
+        error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Cephalon address: ") + address);
         return false;
     }
 
@@ -4050,7 +4050,7 @@ bool CreateReissueAssetTransaction(CWallet* pwallet, CCoinControl& coinControl, 
     if (!change_address.empty()) {
         CTxDestination destination = DecodeDestination(change_address);
         if (!IsValidDestination(destination)) {
-            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + change_address);
+            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Cephalon address: ") + change_address);
             return false;
         }
     } else {
@@ -4240,7 +4240,7 @@ bool CreateTransferAssetTransaction(CWallet* pwallet, const CCoinControl& coinCo
         int64_t expireTime = transfer.first.nExpireTime;
 
         if (!IsValidDestinationString(address)) {
-            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + address);
+            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Cephalon address: ") + address);
             return false;
         }
         auto currentActiveAssetCache = GetCurrentAssetCache();

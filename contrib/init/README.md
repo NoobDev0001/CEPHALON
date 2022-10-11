@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: neoxad.service
-Upstart: neoxad.conf
-OpenRC:  neoxad.openrc
-         neoxad.openrcconf
-CentOS:  neoxad.init
-OS X:    org.neoxa.neoxad.plist
+SystemD: cephalond.service
+Upstart: cephalond.conf
+OpenRC:  cephalond.openrc
+         cephalond.openrcconf
+CentOS:  cephalond.init
+OS X:    org.cephalon.cephalond.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

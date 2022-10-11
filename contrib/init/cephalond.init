@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  cephalond The cephalon core server.
+#
+#
+# chkconfig: 345 80 20
+# description: cephalond
+# processname: cephalond
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/cephalond, see below
+if [ -f /etc/sysconfig/cephalond ]; then
+        . /etc/sysconfig/cephalond
+fi
+
+RETVAL=0
+
+prog=cephalond
+# you can override the lockfile via CEPHALOND_LOCKFILE in /etc/sysconfig/cephalond
+lockfile=${CEPHALOND_LOCKFILE-/var/lock/subsys/cephalond}
+
+# cephalond defaults to /usr/bin/cephalond, override with CEPHALOND_BIN
+cephalond=${CEPHALOND_BIN-/usr/bin/cephalond}
+
+# cephalond opts default to -disablewallet, override with CEPHALOND_OPTS
+cephalond_opts=${CEPHALOND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $cephalond $cephalond_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

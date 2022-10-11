@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Cephalon Core consensus library
+Description: Library for the Cephalon consensus protocol.
+Version: 4.4.4
+Libs: -L${libdir} -lcephalonconsensus
+Cflags: -I${includedir}
+Requires.private: libcrypto

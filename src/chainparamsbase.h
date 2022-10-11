@@ -1,19 +1,19 @@
 // Copyright (c) 2014-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Cephalon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_CHAINPARAMSBASE_H
-#define NEOXA_CHAINPARAMSBASE_H
+#ifndef CEPHALON_CHAINPARAMSBASE_H
+#define CEPHALON_CHAINPARAMSBASE_H
 
 #include <memory>
 #include <string>
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between neoxa-cli and neoxad)
- * of a given instance of the Neoxa system.
+ * CBaseChainParams defines the base parameters (shared between cephalon-cli and cephalond)
+ * of a given instance of the Cephalon system.
  */
 class CBaseChainParams
 {
@@ -62,4 +62,4 @@ void SelectBaseParams(const std::string& chain);
  */
 std::string ChainNameFromCommandLine();
 
-#endif // NEOXA_CHAINPARAMSBASE_H
+#endif // CEPHALON_CHAINPARAMSBASE_H

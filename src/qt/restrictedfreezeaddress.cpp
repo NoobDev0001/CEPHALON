@@ -5,7 +5,7 @@
 #include "restrictedfreezeaddress.h"
 #include "ui_restrictedfreezeaddress.h"
 
-#include "neoxaunits.h"
+#include "cephalonunits.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "guiutil.h"
