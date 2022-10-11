@@ -1,0 +1,3 @@
+qt/libneoxaqt_a-qrc_neoxa_locale.o: qt/qrc_neoxa_locale.cpp \
+ /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:

@@ -1,0 +1,2 @@
+qt/libneoxaqt_a-qrc_neoxa.o: qt/qrc_neoxa.cpp /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:
