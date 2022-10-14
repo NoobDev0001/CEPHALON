@@ -173,12 +173,12 @@ public:
         nDefaultPort = 9738;
         nPruneAfterHeight = 100000;
 		
-	uint32_t nGenesisTime = 1665469023;	
+	uint32_t nGenesisTime = 1665742978;	
 
      // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
 		/////////////////////////////////////////////////////////////////
-		
-         /*
+		/*
+         
         // uint32_t nGenesisTime = 1664813668;
          arith_uint256 test;
         bool fNegative;
@@ -236,9 +236,9 @@ public:
 		// std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;
 
 
-	genesis = CreateGenesisBlock(nGenesisTime, 14427115, 0x1e00ffff, 4, 5000 * COIN);
+	genesis = CreateGenesisBlock(nGenesisTime, 276982, 0x1e00ffff, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();	
-	assert(consensus.hashGenesisBlock == uint256S("0x0000000c00918afc9f7d676def8819c15a3263113559e0bba802fd6db7141cbd"));
+	assert(consensus.hashGenesisBlock == uint256S("000000c4353aac1f20620c7dc17958697559422dba94800d674dc0eb98e0beb4"));
         assert(genesis.hashMerkleRoot == uint256S("fc14e6be446c8d033962db83d325dbebc480719761aa62a376b8af33e581db63"));
 
 
@@ -329,7 +329,7 @@ public:
         nMessagingActivationBlock = 1; // Messaging activated block height
         nRestrictedActivationBlock = 1; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = 1665469023;
+        nKAAAWWWPOWActivationTime = 1665744981;
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
     }
 };
